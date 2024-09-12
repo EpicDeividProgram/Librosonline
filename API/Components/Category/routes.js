@@ -1,5 +1,5 @@
 import express from 'express';
-import { Category } from 'model.js'; // Importar el modelo
+import { Category } from './model.js'; // Importación relativa del modelo
 
 export const categoryRouter = express.Router();
 

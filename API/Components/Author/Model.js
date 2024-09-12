@@ -1,10 +1,15 @@
-import { sequelize } from '../Configuration/connection.js';
+// --------------------------------------------------------
+// ----- Author ---- (MODEL) -----
+// --------------------------------------------------------
+// ---*** IMPORTACIONES ***---
+import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
 
 export const Author = sequelize.define('author', 
     {
         idA: {
             type: Sequelize.INTEGER,
+            allowNull: false,
             autoIncrement: true,
             primaryKey: true
 

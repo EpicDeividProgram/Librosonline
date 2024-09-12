@@ -1,5 +1,6 @@
 import express from 'express';
-import { Author } from 'model.js'; // Importar el modelo
+import { Author } from './model.js'; // Importación relativa del modelo
+
 
 export const authorRouter = express.Router();
 

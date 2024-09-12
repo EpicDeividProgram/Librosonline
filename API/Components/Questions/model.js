@@ -1,10 +1,15 @@
-import { sequelize } from '../Configuration/connection.js';
+// --------------------------------------------------------
+// ----- Questions ---- (MODEL) -----
+// --------------------------------------------------------
+// ---*** IMPORTACIONES ***---
+import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
 
 export const Questions = sequelize.define('questions', 
     {
         codeQ: {
             type: Sequelize.INTEGER,
+            allowNull: false,
             autoIncrement: true,
             primaryKey: true
 
