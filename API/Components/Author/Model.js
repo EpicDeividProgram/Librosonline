@@ -5,7 +5,7 @@
 import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
 
-export const Author = sequelize.define('author', 
+export const Author = sequelize.define('authors', 
     {
         idA: {
             type: Sequelize.INTEGER,
