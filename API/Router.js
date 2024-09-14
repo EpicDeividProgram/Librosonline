@@ -7,8 +7,9 @@ import bodyParser from 'body-parser';
 import {sequelize} from './Configuration/connection.js';
 // ENTITIES
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
+/*
 import {similarRouter} from './Components/SimilarProducts/Route.js';
-import {bookTypeRouter} from './Components/BookType/Route.js';
+import {bookTypeRouter} from './Components/BookType/Route.js';*/
 
 // Creamos la aplicación de Express
 const appX = express();
@@ -20,8 +21,10 @@ appX.use(express.json());
 // --- URLS & QUERIES ---
 //--
 appX.use("/typeofUser", typeUserRouter)
+
+/*
 appX.use("/similarProduct", similarRouter)
-appX.use("/bookType", bookTypeRouter)
+appX.use("/bookType", bookTypeRouter)*/
 //--
 
 
@@ -36,7 +39,7 @@ appX.get('/', (req, res) => {
 const connectDB = async () => {
     try{
         await sequelize.sync();
-        console.log('DB cobbection established succesfully!');
+        console.log('DB connection established succesfully!');
     }
     catch (error){
         console.log('ERR0R! Couldnt connect yet with the DB!', error);
