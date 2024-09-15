@@ -34,7 +34,7 @@ const updateT = async (username, typeU) => {
 };
 //** 
 // DELETE 
-const deleteP = async (username) => {
+const deleteT = async (username) => {
     const delTypeOfUser = await TypeOfUser.findOne({where: { username: username }});
     await delTypeOfUser.destroy();
     return delTypeOfUser;
