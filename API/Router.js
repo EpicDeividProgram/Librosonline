@@ -7,9 +7,8 @@ import bodyParser from 'body-parser';
 import {sequelize} from './Configuration/connection.js';
 // ENTITIES
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
-/*
+import {bookTypeRouter} from './Components/BookType/Route.js';
 import {similarRouter} from './Components/SimilarProducts/Route.js';
-import {bookTypeRouter} from './Components/BookType/Route.js';*/
 
 // Creamos la aplicación de Express
 const appX = express();
@@ -21,18 +20,14 @@ appX.use(express.json());
 // --- URLS & QUERIES ---
 //--
 appX.use("/typeofUser", typeUserRouter)
-
-/*
 appX.use("/similarProduct", similarRouter)
-appX.use("/bookType", bookTypeRouter)*/
-//--
-
+appX.use("/bookType", bookTypeRouter)
+//-
 
 //
 appX.get('/', (req, res) => {
     res.status(200).json({ message: `Welcome to the API` });
 });
-
 
 // TRY AWAIT FOR THE --- MYSQL WORKBENCH CONNECTION WITH THE DB ----
 //
