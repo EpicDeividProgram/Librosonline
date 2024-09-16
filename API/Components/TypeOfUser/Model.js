@@ -8,9 +8,8 @@ import {Sequelize} from 'sequelize';
 export const TypeOfUser = sequelize.define('typeOfUser', 
 {
     username: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
 
     },
