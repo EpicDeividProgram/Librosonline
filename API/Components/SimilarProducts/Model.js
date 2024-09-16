@@ -2,7 +2,7 @@
 // ----- SIMILAR PRODUCTS --- (MODEL) -----
 // --------------------------------------------------------
 // ---*** IMPORTACIONES ***---
-import {sequelize} from './Configuration/connection.js';
+import {sequelize} from '../../Configuration/connection.js';
 import {Sequelize} from 'sequelize';
 
 export const SimilarProduct = sequelize.define('similarProduct', 

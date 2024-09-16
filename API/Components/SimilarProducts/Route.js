@@ -23,6 +23,6 @@ similarProdrouter.put('/:codeS',controllerS.updateSimProd) //=== UPDATE ===
 //(DELETE)
 similarProdrouter.delete('/:codeS', controllerS.deleteSimProd) //=== DELETE ===
 //
-similarProdrouter.get('/byDescription/:descriptionT', controllerS.filterSimProd) //FILTER SIM. PRODUCTS BY NAME
+similarProdrouter.get('/byName/:name', controllerS.filterProdByName) //FILTER SIM. PRODUCTS BY NAME
 
 //*************************
