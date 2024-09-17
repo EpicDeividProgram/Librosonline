@@ -26,7 +26,6 @@ const addT = async (typeUser) => {
 // UPDATE
 const updateT = async (username, typeU) => {
     const updTypeOfUser = await TypeOfUser.findOne({where: { username: username }});
-    updTypeOfUser.username = typeU.username;
     updTypeOfUser.typeOfUser = typeU.typeOfUser;
     updTypeOfUser.password = typeU.password;
     await updTypeOfUser.save();

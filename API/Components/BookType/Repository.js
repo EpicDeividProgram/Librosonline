@@ -26,7 +26,6 @@ const addBookT = async (typeBook) => {
 // UPDATE
 const updateBookT = async (codeT, typeB) => {
     const updTypeOfBook = await BookType.findOne({where: { codeT: codeT }});
-    updTypeOfBook.codeT = typeB.codeT;
     updTypeOfBook.descriptionType = typeB.descriptionType;
     await updTypeOfBook.save();
     return updTypeOfBook;
