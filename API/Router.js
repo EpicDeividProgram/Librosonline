@@ -8,6 +8,8 @@ import { sequelize } from './Configuration/connection.js';
 import { authorRouter } from './Components/Author/routes.js';
 import { categoryRouter } from './Components/Category/routes.js';
 import { questionsRouter } from './Components/Questions/routes.js';
+import {typeUserRouter} from './Components/TypeOfUser/Route.js';
+import { userRouter } from './Components/User/Routes.js';
 
 // Creamos la aplicación de Express
 const app = express();
@@ -21,6 +23,8 @@ app.use(express.json());
 app.use("/author", authorRouter);
 app.use("/category", categoryRouter);
 app.use("/questions", questionsRouter);
+app.use("/typeofUser", typeUserRouter);
+app.use("/user", userRouter);
 
 app.get('/', (req, res) => {
     res.status(200).json({ message: `Welcome to the API` });
