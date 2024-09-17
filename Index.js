@@ -8,6 +8,3 @@ const PORT = 4001;
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost: + ${PORT}`)
 })
-
-//!! (Duda/Nota): app.listen definido junto al port aqui al ser el Router el APP
-//y el Index el verdadero MAIN, cierto?

@@ -27,7 +27,7 @@ const addProdS = async (simProd) => {
 // UPDATE
 const updateProdS = async (codeS, simProd) => {
     const updSimProd = await SimilarProduct.findOne({where: { codeS: codeS }});
-    updSimProd.codeS = simProd.codeS;
+    updSimProd.userId = simProd.userId;
     updSimProd.name = simProd.name;
     updSimProd.description = simProd.description;
     await updSimProd.save();
@@ -36,7 +36,7 @@ const updateProdS = async (codeS, simProd) => {
 //** 
 // DELETE 
 const deleteProdS = async (codeS) => {
-    const delSimProd = await BookType.findOne({where: { codeS: codeS }});
+    const delSimProd = await SimilarProduct.findOne({where: { codeS: codeS }});
     await delSimProd.destroy();
     return delSimProd;
 };

@@ -14,6 +14,10 @@ export const SimilarProduct = sequelize.define('similarProduct',
             primaryKey: true
 
         },
+        userId: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
         name: {
             type: Sequelize.STRING,
             allowNull: false
