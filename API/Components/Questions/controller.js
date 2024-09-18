@@ -12,9 +12,14 @@ const searchQuestion = async (req, res) => {
     res.status(200).json(await serviceQ.searchById(req.params.id));
 };
 
-// ADD QUESTION (POST)
+/*// ADD QUESTION (POST)
 const addQuestions = async (req, res) => {
     res.status(200).json(await serviceQ.addQuestion(req.body));
+};*/
+
+// ADD QUESTION (POST)
+const addQuestions = async (req, res) => {
+    res.status(200).json(await serviceQ.addQuestion(req.body));  // req.body debe incluir el userId
 };
 
 

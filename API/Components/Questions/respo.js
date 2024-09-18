@@ -12,11 +12,22 @@ const findQuestionByID = async (id) => {
     return await Questions.findOne({ where: { codeQ: id } });
 };
 
-// ADD/CREATE QUESTION
+/*// ADD/CREATE QUESTION
 const addQ = async (question) => {
     const newQuestion = await Questions.create(question);
     return newQuestion;
+};*/
+
+// ADD/CREATE QUESTION
+const addQ = async (question) => {
+    const newQuestion = await Questions.create({
+        codeQ: question.codeQ,
+        description: question.description,
+        userId: question.userId  // Aseguramos de que el ID del usuario se pase aqui
+    });
+    return newQuestion;
 };
+
 
 // UPDATE QUESTION
 const updateQ = async (id, question) => {
