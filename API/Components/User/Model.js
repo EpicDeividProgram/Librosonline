@@ -8,9 +8,10 @@ import { TypeOfUser } from '../TypeOfUser/Model.js'; // Importar el modelo TypeO
 export const User = sequelize.define('user', 
 {
     idU: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        type: Sequelize.STRING,
+        allowNull: false,
+        primaryKey: true
+
     },
     name: {
         type: Sequelize.STRING,

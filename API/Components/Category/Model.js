@@ -8,11 +8,9 @@ import { Sequelize } from 'sequelize';
 export const Category = sequelize.define('categories', 
     {
         codeC: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
-            autoIncrement: true,
-            primaryKey: true
-
+            primaryKey: true           
         },
         nameC: {
             type: Sequelize.STRING,

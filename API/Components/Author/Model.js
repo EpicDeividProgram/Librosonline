@@ -8,11 +8,9 @@ import { Sequelize } from 'sequelize';
 export const Author = sequelize.define('authors', 
     {
         idA: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
-            autoIncrement: true,
-            primaryKey: true
-
+            primaryKey: true        
         },
         fullname: {
             type: Sequelize.STRING,

@@ -8,11 +8,9 @@ import { Sequelize } from 'sequelize';
 export const Questions = sequelize.define('questions', 
     {
         codeQ: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
-            autoIncrement: true,
             primaryKey: true
-
         },
         description: {
             type: Sequelize.STRING,
