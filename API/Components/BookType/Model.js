@@ -10,7 +10,6 @@ export const BookType = sequelize.define('bookType',
         codeT: {
             type: Sequelize.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             primaryKey: true
 
         },

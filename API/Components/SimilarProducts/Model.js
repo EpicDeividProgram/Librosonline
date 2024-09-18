@@ -10,7 +10,6 @@ export const SimilarProduct = sequelize.define('similarProduct',
         codeS: {
             type: Sequelize.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             primaryKey: true
 
         },
