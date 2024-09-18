@@ -3,54 +3,44 @@
 // --------------------------------------------------------
 // ---*** IMPORTACIONES ***---
 import {reposU} from './Repository.js';
-/*
 // SHOW ALL PRODUCTS
-const showAllTypes = async () => {
-    const typesU = await reposT.showAll();
-    return { TypeOfUsers: typesU};
+const showAllUsers = async () => {
+    const allUsers = await reposU.showAll();
+    return { users: allUsers};
 };
 
-// SEARCH BY USERNAME (:username)
-const searchByUsername = async (username) => {
-    return { typeOfUser: await reposT.findTypeByUsername(username)};
+// SEARCH BY ID (:idU)
+const searchUserById = async (idU) => {
+    return { user: await reposU.searchThisUser(idU)};
 };
 
-// ADD (:username)
-const addTypeUser = async (typeUser) => {
-    return { newTypeU: await reposT.addT(typeUser)};
+// FILTER USERS BY TYPE (:type)
+const filterByType = async (typeU) => {
+    const filterUsers = await reposU.showAll();
+    return { userByType: filterUsers.filter(userX => userX.type == typeU)};
 };
 
-// UPDATE (:username)
-const updateTypeUser = async (username, typeU) => {
-    return { updTypeU: await reposT.updateT(username, typeU)};
+// ADD (:idU)
+const addUser = async (objUser) => {
+    return { newUser: await reposU.addU(objUser)};
 };
 
-// DELETE (:username)
-const deleteTypeUser = async (username) => {
-    return { delTypeU: await reposT.deleteT(username)};
+// UPDATE (:idU)
+const updateUser = async (idU, objU) => {
+    return { updateU: await reposU.updateU(idU, objU)};
 };
 
-//export this serviceT module
-/*
+// DELETE (:idU)
+const deleteUser = async (idU) => {
+    return { deleteU: await reposU.deleteU(idU)};
+};
+
+//export this service module
 export const serviceU = {
-    showAllTypes,
-    searchByUsername,
-    addTypeUser,
-    updateTypeUser,
-    deleteTypeUser
-}*/
-
-// FILTER PRODUCTS By QUANTITY (:QUANTITY)
-/*const filterByQuantity = async (quantity) => {
-    const products = await reposP.showAll();
-    return { productsByQuantity: products.filter(prod => prod.quantity == quantity)};
-};*/
-
-
-/*
-.showAllTypes()
-.searchByUsername(req.params.username)
-.addTypeUser(req.body)
-.updateTypeUser(req.params.username, req.body)
-.deleteTypeUser(req.params.username)
-*/
+    showAllUsers,
+    searchUserById,
+    filterByType,
+    addUser,
+    updateUser,
+    deleteUser
+}

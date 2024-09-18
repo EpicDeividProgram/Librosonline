@@ -12,11 +12,11 @@ userRouter.use(bodyParser.json());
 userRouter.use(bodyParser.urlencoded({ extended: true}))
 userRouter.use(express.json())
 
-// (CRUD DE TYPE-OF-USER)
+// (CRUD DE USER)
 //(GET)
 userRouter.get('/users', controllerU.getAllUsers) //=== GET/SHOW TYPES === 
-userRouter.get('/:idU', controllerU.searchUser) //=== SEARCH TYPE BY USERNAME === 
-userRouter.get('/userByType/:type', controllerU.filterByType) //=== FILTER USERS BY TYPES === 
+userRouter.get('/:idU', controllerU.searchUserById) //=== SEARCH USER BY ID === 
+userRouter.get('/userByType/:type', controllerU.filterUByType) //=== FILTER USERS BY TYPES === 
 //(POST)
 userRouter.post('/', controllerU.addUser) //=== ADD === 
 //(PUT)

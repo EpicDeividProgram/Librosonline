@@ -6,46 +6,50 @@
 import {User} from './Model.js'
 // *****************************************************************************
 //** 
-/*
+
 // SHOW ALL
 const showAll = async () => {
-    return await TypeOfUser.findAll();
+    return await User.findAll();
 };
 //** 
-// SEARCH :USERNAME
-const findTypeByUsername = async (username) => {
-    return await TypeOfUser.findOne({where: { username: username }});
+// SEARCH :IDU
+const searchThisUser = async (idU) => {
+    return await User.findOne({where: { idU: idU }});
 };
 //** 
 // ADD/CREATE
-const addT = async (typeUser) => {
-    const newTypeOfUser = await TypeOfUser.create(typeUser);
-    return newTypeOfUser;
+const addU = async (objUser) => {
+    const newUser = await User.create(objUser);
+    return newUser;
 };
 
 //** 
 // UPDATE
-const updateT = async (username, typeU) => {
-    const updTypeOfUser = await TypeOfUser.findOne({where: { username: username }});
-    updTypeOfUser.typeOfUser = typeU.typeOfUser;
-    updTypeOfUser.password = typeU.password;
-    await updTypeOfUser.save();
-    return updTypeOfUser;
+const updateU = async (idU, objU) => {
+    const updatedUser = await User.findOne({where: { idU: idU }});
+    updatedUser.name = objU.name;
+    updatedUser.lastName = objU.lastName;
+    updatedUser.birthDate = objU.birthDate;
+    updatedUser.address = objU.address;
+    updatedUser.email = objU.email;
+    updatedUser.typeOfUser = objU.typeOfUser;
+    await updatedUser.save();
+    return updatedUser;
 };
 //** 
 // DELETE 
-const deleteT = async (username) => {
-    const delTypeOfUser = await TypeOfUser.findOne({where: { username: username }});
-    await delTypeOfUser.destroy();
-    return delTypeOfUser;
+const deleteU = async (idU) => {
+    const deleteThisUser = await User.findOne({where: { idU: idU }});
+    await deleteThisUser.destroy();
+    return deleteThisUser;
 };
 //
 //
 //export this module repos
 export const reposU = {
     showAll,
-    findTypeByUsername,
-    addT,
-    updateT,
-    deleteT
-}*/
+    searchThisUser,
+    addU,
+    updateU,
+    deleteU
+}

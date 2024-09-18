@@ -22,7 +22,7 @@ export const User = sequelize.define('user',
         allowNull: false
     },
     birthDate: {
-        type: Sequelize.DATETIME,
+        type: Sequelize.DATE,
         allowNull: false
     },
     address: {
@@ -36,6 +36,5 @@ export const User = sequelize.define('user',
     typeOfUser: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-      
+    }
 });
