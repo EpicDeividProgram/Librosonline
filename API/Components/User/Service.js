@@ -3,27 +3,27 @@
 // --------------------------------------------------------
 import { reposU } from './Repository.js';
 
-// Mostrar todos los usuarios
+// Show all users
 const showAllUsers = async () => {
     return { users: await reposU.showAllUsers() };
 };
 
-// Buscar usuario por ID
+// Search user by ID
 const searchUserById = async (idU) => {
     return { user: await reposU.findUserById(idU) };
 };
 
-// Añadir un nuevo usuario
+// Add a new user
 const addUser = async (user) => {
     return { newUser: await reposU.addUser(user) };
 };
 
-// Actualizar un usuario por ID
+// Update a user by ID
 const updateUser = async (idU, userDetails) => {
     return { updatedUser: await reposU.updateUser(idU, userDetails) };
 };
 
-// Eliminar un usuario por ID
+// Delete a user by ID
 const deleteUser = async (idU) => {
     return { deletedUser: await reposU.deleteUser(idU) };
 };

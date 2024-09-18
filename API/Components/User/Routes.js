@@ -12,11 +12,11 @@ userRouter.use(bodyParser.urlencoded({ extended: true }));
 userRouter.use(express.json());
 
 // (CRUD para USERS)
-userRouter.get('/', controllerU.getAllUsers); // Mostrar todos los usuarios
-userRouter.get('/:idU', controllerU.searchUserById); // Buscar usuario por ID
-userRouter.post('/', controllerU.addUser); // Añadir nuevo usuario
-userRouter.put('/:idU', controllerU.updateUser); // Actualizar usuario
-userRouter.delete('/:idU', controllerU.deleteUser); // Eliminar usuario
+userRouter.get('/', controllerU.getAllUsers); // Show all users
+userRouter.get('/:idU', controllerU.searchUserById); // Search user by ID
+userRouter.post('/', controllerU.addUser); // Add new user
+userRouter.put('/:idU', controllerU.updateUser); // Update user
+userRouter.delete('/:idU', controllerU.deleteUser); // Delete user
 
-// Exportar las rutas
+// Export the routes
 export default userRouter;

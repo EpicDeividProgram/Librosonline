@@ -3,23 +3,23 @@
 // --------------------------------------------------------
 import { User } from './Model.js';
 
-// ** Mostrar todos los usuarios
+// ** Show all users
 const showAllUsers = async () => {
     return await User.findAll();
 };
 
-// ** Buscar usuario por ID
+// ** Search user by ID
 const findUserById = async (idU) => {
     return await User.findOne({ where: { idU: idU } });
 };
 
-// ** Añadir nuevo usuario
+// ** Add new user
 const addUser = async (user) => {
     const newUser = await User.create(user);
     return newUser;
 };
 
-// ** Actualizar usuario por ID
+// ** Update user by ID
 const updateUser = async (idU, userDetails) => {
     const user = await User.findOne({ where: { idU: idU } });
     user.name = userDetails.name;
@@ -32,7 +32,7 @@ const updateUser = async (idU, userDetails) => {
     return user;
 };
 
-// ** Eliminar usuario por ID
+// ** Delete user by ID
 const deleteUser = async (idU) => {
     const user = await User.findOne({ where: { idU: idU } });
     await user.destroy();
