@@ -10,6 +10,8 @@ import { categoryRouter } from './Components/Category/routes.js';
 import { questionsRouter } from './Components/Questions/routes.js';
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
 import { userRouter } from './Components/User/Routes.js';
+import { bookPostTypeRouter } from './Components/BookPost&Type/routes.js';
+import { categoryPerBookRouter } from './Components/CategoryPerBook/routes.js';
 
 // Creamos la aplicación de Express
 const app = express();
@@ -25,6 +27,8 @@ app.use("/category", categoryRouter);
 app.use("/questions", questionsRouter);
 app.use("/typeofUser", typeUserRouter);
 app.use("/user", userRouter);
+app.use("/bookposttype", bookPostTypeRouter);
+app.use("/categoryPerBook", categoryPerBookRouter);
 
 app.get('/', (req, res) => {
     res.status(200).json({ message: `Welcome to the API` });
