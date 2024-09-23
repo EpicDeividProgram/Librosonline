@@ -5,6 +5,7 @@
 import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
 
+// Definimos el modelo TypeOfUser
 export const TypeOfUser = sequelize.define('typeOfUser', {
     username: {
         type: Sequelize.STRING,
@@ -14,11 +15,7 @@ export const TypeOfUser = sequelize.define('typeOfUser', {
     typeOfUser: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true  // restriccion UNIQUE
-        /*------------------------------------------------*/
-        //el campo typeOfUser que estamos utilizando como referencia de la clave foranea (type) 
-        //no tiene una restriccion de clave unica (UNIQUE). Esto es necesario para que MySQL 
-        //permita establecer una clave foranea.
+        unique: true // Restriccion UNIQUE
     },
     password: {
         type: Sequelize.STRING,
@@ -26,12 +23,13 @@ export const TypeOfUser = sequelize.define('typeOfUser', {
     }
 });
 
-// Relacionar con el modelo User (1:N)
-export const defineTypeOfUserRelations = async () => {
+// Importacion dinamica para evitar problemas de referencia circular
+(async () => {
     const { User } = await import('../User/Model.js');
+
+    // Relacion de TypeOfUser a User (1:N)
     TypeOfUser.hasMany(User, {
-        foreignKey: 'type',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        foreignKey: 'type', // La clave foranea en User
+        sourceKey: 'username' // La clave primaria en TypeOfUser
     });
-};
+})();
