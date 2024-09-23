@@ -40,8 +40,8 @@ const connectDB = async () => {
     try{
         await sequelize.sync();
 
-        TypeOfUser.hasMany(User, { foreignKey: 'typeOfUser' }); 
-        User.belongsTo(TypeOfUser, { foreignKey: 'typeOfUser' });
+        /*TypeOfUser.hasMany(User, { foreignKey: 'typeOfUser' }); 
+        User.belongsTo(TypeOfUser, { foreignKey: 'typeOfUser' });*/
 
         console.log('DB connection established succesfully!');
     }

@@ -1,39 +1,30 @@
 // --------------------------------------------------------
-// ----- USER --- (MODEL) -----
+// ----- BOOKPOST --- (MODEL) -----
 // --------------------------------------------------------
 // ---*** IMPORTACIONES ***---
 import {sequelize} from '../../Configuration/connection.js';
 import {Sequelize} from 'sequelize';
 
-export const User = sequelize.define('user', 
+export const BookPost = sequelize.define('bookpost', 
 {
-    idU: {
+    codeP: {
         type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true
-
     },
     name: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    lastName: {
+    idA: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    birthDate: {
-        type: Sequelize.DATE,
-        allowNull: false
-    },
-    address: {
+    idU: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    username: {
+    postDescription: {
         type: Sequelize.STRING,
         allowNull: false
     }
