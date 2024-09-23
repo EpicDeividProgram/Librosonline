@@ -24,11 +24,12 @@ app.use(express.json());
 // --- RUTAS ---
 app.use("/author", authorRouter);
 app.use("/category", categoryRouter);
-app.use("/questions", questionsRouter);
 app.use("/typeofUser", typeUserRouter);
-app.use("/user", userRouter);
+app.use("/questions", questionsRouter);
 app.use("/bookposttype", bookPostTypeRouter);
 app.use("/categoryPerBook", categoryPerBookRouter);
+app.use("/user", userRouter);
+
 
 app.get('/', (req, res) => {
     res.status(200).json({ message: `Welcome to the API` });
@@ -38,7 +39,8 @@ app.get('/', (req, res) => {
 const startDBConnection = async () => {
     try {
         //await sequelize.sync({ alter: true });
-        await sequelize.sync();
+        await sequelize.sync({ force: true }); // Crea todas las tablas
+        //await sequelize.sync();
         console.log('Connected with the DB successfully!');
     } catch (error) {
         console.error('Sorry, couldn\'t connect to the DB!', error);

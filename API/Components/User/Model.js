@@ -4,6 +4,7 @@
 // ---*** IMPORTACIONES ***---
 import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
+import { TypeOfUser } from '../TypeOfUser/Model.js';
 
 
 export const User = sequelize.define('user', {
@@ -37,7 +38,7 @@ export const User = sequelize.define('user', {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
-            model: 'typeOfUser', // Nombre de la tabla de referencia
+            model: TypeOfUser,
             key: 'username' // Clave primaria en TypeOfUser
         }
     }
