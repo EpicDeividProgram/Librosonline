@@ -1,8 +1,7 @@
 import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
-import { TypeOfUser } from '../TypeOfUser/Model.js'; // Importar el modelo TypeOfUser para la FK
 
-// Definimos el modelo User
+
 export const User = sequelize.define('user', {
     idU: {
         type: Sequelize.STRING,
@@ -31,26 +30,32 @@ export const User = sequelize.define('user', {
         unique: true
     },
     type: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING, // Este campo solo lo definimos como STRING
         allowNull: false,
-        references: {
-            model: TypeOfUser, // Referencia a TypeOfUser
-            key: 'typeOfUser'
-        }
     }
 });
 
-// Importación dinamica para evitar el problema de referencia circular
+
+// Importación dinámica para evitar el problema de referencia circular
 (async () => {
     const { Questions } = await import('../Questions/model.js');
 
-    // Relacion de User a Questions (1:N)
+    // Relación de User a Questions (1:N)
     User.hasMany(Questions, {
         foreignKey: 'userId',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
     });
 })();
+
+// Funcion para definir relaciones TypeOfUser (1:N)
+export const defineUserRelations = async () => {
+    const { TypeOfUser } = await import('../TypeOfUser/Model.js');
+    User.belongsTo(TypeOfUser, {
+        foreignKey: 'type',
+        targetKey: 'typeOfUser'});
+};
+
 
 
 /*nota:
