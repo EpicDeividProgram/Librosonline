@@ -5,14 +5,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {sequelize} from './Configuration/connection.js';
-// ENTITIES
-import {TypeOfUser} from './Components/TypeOfUser/Model.js'
-import {User} from './Components/User/Model.js'
+
 // ENTITIES ROUTERS
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
 import {typeBookRouter} from './Components/BookType/Route.js';
 import {similarProdrouter} from './Components/SimilarProducts/Route.js';
 import {userRouter} from './Components/User/Route.js';
+import {postBookRouter} from './Components/BookPost/Route.js';
 
 // Creamos la aplicación de Express
 const appX = express();
@@ -27,6 +26,7 @@ appX.use("/typeofUser", typeUserRouter)
 appX.use("/bookType", typeBookRouter)
 appX.use("/similarProduct", similarProdrouter)
 appX.use("/user", userRouter)
+appX.use("/postBook", postBookRouter)
 //-
 
 //
@@ -39,10 +39,6 @@ appX.get('/', (req, res) => {
 const connectDB = async () => {
     try{
         await sequelize.sync();
-
-        /*TypeOfUser.hasMany(User, { foreignKey: 'typeOfUser' }); 
-        User.belongsTo(TypeOfUser, { foreignKey: 'typeOfUser' });*/
-
         console.log('DB connection established succesfully!');
     }
     catch (error){

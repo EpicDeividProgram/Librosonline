@@ -4,50 +4,38 @@
 // ---*** IMPORTACIONES ***---
 import { servicePost } from './Service.js';
 
-/*
 // === HTTP VERBS & ASYNC FUNCS ===
 //GET TYPES (GET)
-const getAllBookTypes = async(req, res)=>{
-    res.status(200).json(await serviceBookT.showAllTypes())
-}
-//
-//SEARCH TYPE (GET)
-const searchBookType = async (req, res)=>{
-    res.status(200).json(await serviceBookT.searchByCode(req.params.codeT))
+const getAllBookPost = async(req, res)=>{
+    res.status(200).json(await servicePost.showAllTypes())
 }
 
-//ADD TYPE (POST)
-const addBookType = async (req, res)=>{
-    res.status(200).json(await serviceBookT.addTypeBook(req.body));
-}
-//UPDATE TYPE (PUT)
-const updateBookType = async (req, res)=> {
-    res.status(200).json(await serviceBookT.updateTypeBook(req.params.codeT, req.body))
+//SEARCH BOOK (GET)
+const searchBookPost = async (req, res)=>{
+    res.status(200).json(await servicePost.searchByCode(req.params.codeP))
 }
 
-//DELETE TYPE (DELETE)
-const deleteBookType = async (req, res) =>{
-    res.status(200).json(await serviceBookT.deleteTypeBook(req.params.codeT));
+//ADD BOOK (POST)
+const publishAbook = async (req, res)=>{
+    res.status(200).json(await servicePost.addBookPost(req.body));
+}
+//UPDATE BOOK (PUT)
+const updateBookPost = async (req, res)=> {
+    res.status(200).json(await servicePost.updatePost(req.params.codeP, req.body))
 }
 
-//FILTER BOOK-TYPE BY DESCRIPTION-TYPE (GET)
-const filterBookTypes = async (req, res)=>{
-    res.status(200).json(await serviceBookT.filterByDescription(req.params.descriptionType))
+//DELETE BOOK (DELETE)
+const deleteBookPost = async (req, res) =>{
+    res.status(200).json(await servicePost.deletePost(req.params.codeP));
 }
+
 
 //export this controller
-export const controllerBookT= {
-    getAllBookTypes,
-    addBookType,
-    searchBookType,
-    updateBookType,
-    deleteBookType,
-    filterBookTypes
+export const controllerPost= {
+    getAllBookPost,
+    publishAbook,
+    searchBookPost,
+    updateBookPost,
+    deleteBookPost
 }
 // ----------------------=================
-
-//FILTER PRODUCT BY QUANTITY (GET)
-/*
-const filterProducts = async (req, res)=>{
-    res.status(200).json(await serviceP.filterByQuantity(req.params.quantity))
-}*/

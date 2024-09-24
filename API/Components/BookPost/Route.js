@@ -14,12 +14,12 @@ postBookRouter.use(express.json())
 
 // (CRUD DE BOOK-POST ----------- PUBLICAR UN LIBRO + EXTRAS)
 //(GET)
-postBookRouter.get('/booksposted', controllerPost.getAllBookTypes) //=== GET/SHOW BOOK-TYPES === 
-postBookRouter.get('/:codeP', controllerPost.searchBookType) //=== SEARCH BOOK-TYPE BY CODET === 
+postBookRouter.get('/booksposted', controllerPost.getAllBookPost) //=== GET/SHOW BOOK-POST === 
+postBookRouter.get('/:codeP', controllerPost.searchBookPost) //=== SEARCH BOOK-POST BY CODEP === 
 //(POST)
-postBookRouter.post('/', controllerPost.publishAbook) //=== ADD === 
+postBookRouter.post('/', controllerPost.publishAbook) //=== ADD - PUBLISH A BOOK === 
 //(PUT)
-postBookRouter.put('/:codeP',controllerPost.updateBookType) //=== UPDATE === 
+postBookRouter.put('/:codeP',controllerPost.updateBookPost) //=== UPDATE === 
 //(DELETE)
-postBookRouter.delete('/:codeP', controllerPost.deleteBookType) //=== DELETE ===
+postBookRouter.delete('/:codeP', controllerPost.deleteBookPost) //=== DELETE ===
 //*
