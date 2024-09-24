@@ -12,6 +12,8 @@ import {typeBookRouter} from './Components/BookType/Route.js';
 import {similarProdrouter} from './Components/SimilarProducts/Route.js';
 import {userRouter} from './Components/User/Route.js';
 import {postBookRouter} from './Components/BookPost/Route.js';
+import {sagaRouter} from './Components/Serie/Route.js';
+
 
 // Creamos la aplicación de Express
 const appX = express();
@@ -27,6 +29,7 @@ appX.use("/bookType", typeBookRouter)
 appX.use("/similarProduct", similarProdrouter)
 appX.use("/user", userRouter)
 appX.use("/postBook", postBookRouter)
+appX.use("/seriesRelated", sagaRouter)
 //-
 
 //
