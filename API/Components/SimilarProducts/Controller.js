@@ -26,6 +26,7 @@ const updateSimProd = async (req, res)=> {
 }
 
 //DELETE TYPE (DELETE)
+//PROBANDO CONEXION CON GIT
 const deleteSimProd = async (req, res) =>{
     res.status(200).json(await serviceSim.deleteProdSim(req.params.codeS));
 }
