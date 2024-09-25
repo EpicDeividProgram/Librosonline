@@ -7,13 +7,17 @@ import bodyParser from 'body-parser';
 import {sequelize} from './Configuration/connection.js';
 
 // ENTITIES ROUTERS
+import { authorRouter } from './Components/Author/Route.js';
+import { categoryRouter } from './Components/Category/Route.js';
+import { questionsRouter } from './Components/Questions/Route.js';
+//
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
 import {typeBookRouter} from './Components/BookType/Route.js';
 import {similarProdrouter} from './Components/SimilarProducts/Route.js';
+//
 import {userRouter} from './Components/User/Route.js';
 import {postBookRouter} from './Components/BookPost/Route.js';
 import {sagaRouter} from './Components/Serie/Route.js';
-
 
 // Creamos la aplicación de Express
 const appX = express();
@@ -24,9 +28,14 @@ appX.use(express.json());
 
 // --- URLS & QUERIES ---
 //--
+appX.use("/author", authorRouter);
+appX.use("/category", categoryRouter);
+appX.use("/questions", questionsRouter);
+//
 appX.use("/typeofUser", typeUserRouter)
 appX.use("/bookType", typeBookRouter)
 appX.use("/similarProduct", similarProdrouter)
+//
 appX.use("/user", userRouter)
 appX.use("/postBook", postBookRouter)
 appX.use("/seriesRelated", sagaRouter)
