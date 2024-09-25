@@ -5,8 +5,8 @@
 import {sequelize} from '../../Configuration/connection.js';
 import {Sequelize} from 'sequelize';
 //
-import { Author } from './Author/Model.js';
-import { User } from './User/Model.js';
+import { Author } from '../Author/Model.js';
+import { User } from '../User/Model.js';
 
 export const BookPost = sequelize.define('bookpost', 
 {
@@ -43,8 +43,8 @@ export const BookPost = sequelize.define('bookpost',
 
 // Importacion dinamica para evitar problemas de referencia circular
 (async () => {
-    const { Author } = await import('./Author/Model.js');
-    const { User } = await import('./User/Model.js');
+    const { Author } = await import('../Author/Model.js');
+    const { User } = await import('../User/Model.js');
 
     // Relación de Author a BookPost (1:N)
     Author.hasMany(BookPost, {

@@ -1,6 +1,6 @@
 // ----------------------------- AUTHOR REPOSITORY -----------------------------
 // --- IMPORTACIONES ---
-import { Author } from './Author/Model.js';
+import { Author } from './Model.js';
 
 // SHOW ALL AUTHORS
 const showAll = async () => {
