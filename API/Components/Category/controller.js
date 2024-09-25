@@ -67,7 +67,7 @@ const deleteCategory = async (req, res) => {
 };
 
 // FILTER CATEGORIES BY NAME (GET)
-const filterCategories = async (req, res) => {
+/*const filterCategories = async (req, res) => {
     try {
         const { name } = req.params;
         const categories = await serviceC.filterByName(name);
@@ -75,7 +75,22 @@ const filterCategories = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Error filtering categories', error });
     }
+};*/
+
+const filterCategories = async (req, res) => {
+    try {
+        const { name } = req.params;
+        const categories = await serviceC.filterByName(name);
+        if (categories.categoriesByName.length > 0) {
+            res.status(200).json(categories);
+        } else {
+            res.status(404).json({ message: 'No categories found with that name' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error filtering categories', error: error.message });
+    }
 };
+
 
 export const controllerC = {
     getAllCategories,

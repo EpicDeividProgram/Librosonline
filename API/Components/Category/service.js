@@ -38,6 +38,7 @@ const filterByName = async (name) => {
     return { categoriesByName: categories };
 };
 
+
 export const serviceC = {
     showAllCategories,
     searchById,

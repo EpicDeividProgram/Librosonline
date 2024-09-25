@@ -12,6 +12,8 @@ import {typeUserRouter} from './Components/TypeOfUser/Route.js';
 import { userRouter } from './Components/User/Routes.js';
 import { bookPostTypeRouter } from './Components/BookPost&Type/routes.js';
 import { categoryPerBookRouter } from './Components/CategoryPerBook/routes.js';
+import {typeBookRouter} from './Components/BookType/Route.js';
+import {postBookRouter} from './Components/BookPost/Route.js';
 
 // Creamos la aplicación de Express
 const app = express();
@@ -29,6 +31,8 @@ app.use("/questions", questionsRouter);
 app.use("/bookposttype", bookPostTypeRouter);
 app.use("/categoryPerBook", categoryPerBookRouter);
 app.use("/user", userRouter);
+app.use("/bookType", typeBookRouter)
+app.use("/postBook", postBookRouter)
 
 
 app.get('/', (req, res) => {
