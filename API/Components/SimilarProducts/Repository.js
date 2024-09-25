@@ -2,7 +2,8 @@
 // --------------- SIMILAR PRODUCTS REPOSITORY -------------------
 // --------------------------------------------------------
 // SIMILAR PRODUCTS OBJ -- TABLE (MODEL)
-import { SimilarProduct } from './Model.js';
+//import { SimilarProduct } from './Model.js';
+import { SimilarProduct } from './prueba1.js';
 // *****************************************************************************
 //** 
 // SHOW ALL
