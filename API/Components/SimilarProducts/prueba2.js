@@ -39,18 +39,18 @@ export const SimilarProduct = sequelize.define('similarProduct',
     const { User } = await import('../User/Model.js');
 
     // Relación de User a TypeOfUser (N:1)
-    SimilarProduct.belongsTo(User, {
+    /*SimilarProduct.belongsTo(User, {
         foreignKey: 'userId', // La clave foránea en Sim prod
         targetKey: 'idU', // La clave primaria en User
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-    });
+    });*/
 
     // Relación de TypeOfUser a User (1:N)
-    /*User.hasMany(SimilarProduct, {
+    User.hasMany(SimilarProduct, {
         foreignKey: 'userId', // La clave foranea en User
         sourceKey: 'idU' // La clave primaria en TypeOfUser
-    });*/
+    });
     //Duda: por lo menos aqui es de 1:M pq user has many sim prods
     //y sim prods belong to 1 User, pero User no tiene FKde sim prod
     //so, hace falta esta segunda tambien? o no?
