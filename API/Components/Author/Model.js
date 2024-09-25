@@ -10,7 +10,6 @@ export const Author = sequelize.define('authors',
     idA: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
 
     },
