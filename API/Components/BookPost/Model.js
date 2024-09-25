@@ -22,18 +22,18 @@ export const BookPost = sequelize.define('bookpost',
     idA: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        /*references: {
+        references: {
             model: Author,
             key: 'idA' // Clave primaria en Author
-        }*/
+        }
     },
     idU: {
         type: Sequelize.STRING,
         allowNull: false,
-        /*references: {
+        references: {
             model: User,
             key: 'idU' // Clave primaria en User
-        }*/
+        }
     },
     postDescription: {
         type: Sequelize.STRING,

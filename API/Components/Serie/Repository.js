@@ -2,7 +2,7 @@
 // --------------- SIMILAR PRODUCTS REPOSITORY -------------------
 // --------------------------------------------------------
 // SIMILAR PRODUCTS OBJ -- TABLE (MODEL)
-import { Serie } from './Model.js';
+import { Serie } from './pruebaSerie.js';
 // *****************************************************************************
 //** 
 // SHOW ALL
