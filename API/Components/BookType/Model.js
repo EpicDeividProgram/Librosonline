@@ -8,7 +8,7 @@ import {Sequelize} from 'sequelize';
 export const BookType = sequelize.define('bookType', 
     {
         codeT: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
             primaryKey: true
 

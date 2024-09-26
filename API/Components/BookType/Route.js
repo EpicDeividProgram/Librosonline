@@ -17,7 +17,9 @@ typeBookRouter.use(express.json())
 typeBookRouter.get('/booktypes', controllerBookT.getAllBookTypes) //=== GET/SHOW BOOK-TYPES === 
 typeBookRouter.get('/:codeT', controllerBookT.searchBookType) //=== SEARCH BOOK-TYPE BY CODET === 
 //(POST)
-typeBookRouter.post('/', controllerBookT.addBookType) //=== ADD === 
+//typeBookRouter.post('/', controllerBookT.addBookType) //=== ADD === 
+typeBookRouter.post('/booktypes', controllerBookT.addBookType); //=== ADD === 
+
 //(PUT)
 typeBookRouter.put('/:codeT',controllerBookT.updateBookType) //=== UPDATE === 
 //(DELETE)
