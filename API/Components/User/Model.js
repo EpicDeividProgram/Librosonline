@@ -38,3 +38,23 @@ export const User = sequelize.define('user',
         allowNull: false
     }
 });
+
+// Importacion dinamica para evitar problemas de referencia circular
+(async () => {
+    const { TypeOfUser } = await import('../TypeOfUser/Model.js');
+
+    // Relación de User a TypeOfUser (N:1)
+    User.belongsTo(TypeOfUser, {
+        foreignKey: 'username', // La clave foránea en User
+        targetKey: 'username', // La clave primaria en TypeOfUser
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+    });
+
+    // Relación de TypeOfUser a User (1:N)
+    TypeOfUser.hasMany(User, {
+        foreignKey: 'username', // La clave foranea en User
+        sourceKey: 'username' // La clave primaria en TypeOfUser
+    });
+
+})();
