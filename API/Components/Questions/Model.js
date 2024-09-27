@@ -20,3 +20,5 @@ export const Questions = sequelize.define('questions',
         }
     }
 );
+
+//MODIFICAR ESTE MODELO!! FALTA LA RELACION CON USER Y EL FK!!!

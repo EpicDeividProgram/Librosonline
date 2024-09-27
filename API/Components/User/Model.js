@@ -35,7 +35,11 @@ export const User = sequelize.define('user',
     },
     username: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        /*references: {
+            model: TypeOfUser,
+            key: 'username' // Clave primaria en TypeOfUser
+        }*/
     }
 });
 
