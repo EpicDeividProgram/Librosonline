@@ -1,9 +1,10 @@
 import express from 'express';
 import { controllerCPB } from './controller.js';
+import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 export const categoryPerBookRouter = express.Router();
 
-categoryPerBookRouter.get('/', controllerCPB.getAllCategoryPerBook); 
-categoryPerBookRouter.get('/search/:id', controllerCPB.searchCategoryPerBook); 
-categoryPerBookRouter.post('/add', controllerCPB.addCategoryPerBook); 
-categoryPerBookRouter.delete('/delete/:id', controllerCPB.deleteCategoryPerBook);
+categoryPerBookRouter.get('/', authenticateToken, isPublisher, controllerCPB.getAllCategoryPerBook); 
+categoryPerBookRouter.get('/search/:id', authenticateToken, isPublisher, controllerCPB.searchCategoryPerBook); 
+categoryPerBookRouter.post('/add', authenticateToken, isPublisher, controllerCPB.addCategoryPerBook); 
+categoryPerBookRouter.delete('/delete/:id', authenticateToken, isPublisher, controllerCPB.deleteCategoryPerBook);

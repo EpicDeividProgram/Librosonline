@@ -1,6 +1,6 @@
 import express from 'express';
 import { Questions } from './model.js';
-import { controllerQ } from './controller.js';  // Controlador para Questions
+import { controllerQ } from './controller.js';
 
 export const questionsRouter = express.Router();
 
@@ -14,9 +14,9 @@ questionsRouter.get('/', async (req, res) => {
     }
 });
 
-questionsRouter.get('/', controllerQ.getAllQuestions);              // Obtener todas las preguntas
-questionsRouter.get('/search/:id', controllerQ.searchQuestion);      // Buscar pregunta por ID
-questionsRouter.post('/add', controllerQ.addQuestions);              // Agregar nueva pregunta
-questionsRouter.put('/update/:id', controllerQ.updateQuestions);     // Actualizar pregunta por ID
-questionsRouter.delete('/delete/:id', controllerQ.deleteQuestions);  // Eliminar pregunta por ID
-questionsRouter.get('/filter/:description', controllerQ.filterQuestions); // Filtrar preguntas por descripción
+questionsRouter.get('/', authenticateToken, controllerQ.getAllQuestions);              // Obtener todas las preguntas
+questionsRouter.get('/search/:id', authenticateToken,  controllerQ.searchQuestion);      // Buscar pregunta por ID
+questionsRouter.post('/add', authenticateToken,  controllerQ.addQuestions);              // Agregar nueva pregunta
+questionsRouter.put('/update/:id', authenticateToken,  controllerQ.updateQuestions);     // Actualizar pregunta por ID
+questionsRouter.delete('/delete/:id', authenticateToken,  controllerQ.deleteQuestions);  // Eliminar pregunta por ID
+questionsRouter.get('/filter/:description', authenticateToken, controllerQ.filterQuestions); // Filtrar preguntas por descripción

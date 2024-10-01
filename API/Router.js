@@ -14,6 +14,7 @@ import { bookPostTypeRouter } from './Components/BookPost&Type/routes.js';
 import { categoryPerBookRouter } from './Components/CategoryPerBook/routes.js';
 import {typeBookRouter} from './Components/BookType/Route.js';
 import {postBookRouter} from './Components/BookPost/Route.js';
+import { authRouter } from './Components/Auth/auth.routes.js';
 
 // Creamos la aplicación de Express
 const app = express();
@@ -33,6 +34,8 @@ app.use("/categoryPerBook", categoryPerBookRouter);
 app.use("/user", userRouter);
 app.use("/bookType", typeBookRouter)
 app.use("/postBook", postBookRouter)
+// Añadir las rutas de autenticación
+app.use('/auth', authRouter);
 
 
 app.get('/', (req, res) => {

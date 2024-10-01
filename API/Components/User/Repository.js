@@ -2,6 +2,7 @@
 // --------------- USER REPOSITORY -------------------
 // --------------------------------------------------------
 import { User } from './Model.js';
+import bcrypt from 'bcryptjs';
 
 // ** Show all users
 const showAllUsers = async () => {
@@ -14,8 +15,16 @@ const findUserById = async (idU) => {
 };
 
 // ** Add new user
-const addUser = async (user) => {
+/*const addUser = async (user) => {
     const newUser = await User.create(user);
+    return newUser;
+};*/
+
+// ** Add new user
+const addUser = async (user) => {
+    // Encriptar la contraseña antes de crear el usuario
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    const newUser = await User.create({ ...user, password: hashedPassword });
     return newUser;
 };
 

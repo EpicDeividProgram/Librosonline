@@ -16,10 +16,6 @@ export const TypeOfUser = sequelize.define('typeOfUser', {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true // Restriccion UNIQUE
-    },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
     }
 });
 
