@@ -49,6 +49,7 @@ appX.get('/', (req, res) => {
 // TRY AWAIT FOR THE --- MYSQL WORKBENCH CONNECTION WITH THE DB ----
 //
 const connectDB = async () => {
+    //validacion - conexion con la BD
     try{
         await sequelize.sync();
         console.log('DB connection established succesfully!');
