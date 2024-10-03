@@ -3,7 +3,7 @@
 // --------------------------------------------------------
 // SIMILAR PRODUCTS OBJ -- TABLE (MODEL)
 //import { SimilarProduct } from './Model.js';
-import { SimilarProduct } from './prueba2.js';
+import { SimilarProduct } from './Model.js';
 // *****************************************************************************
 //** 
 // SHOW ALL
