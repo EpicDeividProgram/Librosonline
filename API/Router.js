@@ -5,15 +5,23 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { sequelize } from './Configuration/connection.js';
+//
 import { authorRouter } from './Components/Author/Route.js';
 import { categoryRouter } from './Components/Category/Route.js';
 import { questionsRouter } from './Components/Questions/Route.js';
+//
+import {similarProdrouter} from './Components/SimilarProducts/Route.js';
+//
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
 import { userRouter } from './Components/User/Routes.js';
+//
 import { bookPostTypeRouter } from './Components/BookPost&Type/Route.js';
+import {sagaRouter} from './Components/Serie/Route.js';
 import { categoryPerBookRouter } from './Components/CategoryPerBook/Route.js';
+//
 import {typeBookRouter} from './Components/BookType/Route.js';
 import {postBookRouter} from './Components/BookPost/Route.js';
+//
 import { authRouter } from './Components/Auth/auth.routes.js';
 
 // Creamos la aplicación de Express
@@ -27,15 +35,24 @@ app.use(express.json());
 // --- RUTAS ---
 app.use("/author", authorRouter);
 app.use("/category", categoryRouter);
+//
 app.use("/typeofUser", typeUserRouter);
 app.use("/questions", questionsRouter);
+//
 app.use("/bookposttype", bookPostTypeRouter);
 app.use("/categoryPerBook", categoryPerBookRouter);
+//
 app.use("/user", userRouter);
 app.use("/bookType", typeBookRouter)
+//
 app.use("/postBook", postBookRouter)
+//
+app.use("/similarProduct", similarProdrouter)
+//
+app.use("/seriesRelated", sagaRouter)
 // Añadir las rutas de autenticación
-app.use('/auth', authRouter);
+app.use('/authLogin', authRouter);
+//
 
 
 app.get('/', (req, res) => {
