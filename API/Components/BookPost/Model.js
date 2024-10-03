@@ -24,11 +24,11 @@ export const BookPost = sequelize.define('bookpost',
         type: Sequelize.STRING,
         allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false,
-        references: {
+        allowNull: false
+        /*references: {
             model: User,
             key: 'idU' // Clave primaria en User
-        }
+        }*/
     },
     postDescription: {
         type: Sequelize.STRING,
