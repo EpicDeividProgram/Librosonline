@@ -22,7 +22,13 @@ export const BookPost = sequelize.define('bookpost',
     },
     idU: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+            model: User,
+            key: 'idU' // Clave primaria en User
+        }
     },
     postDescription: {
         type: Sequelize.STRING,
