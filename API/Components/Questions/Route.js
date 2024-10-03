@@ -1,6 +1,7 @@
 import express from 'express';
-import { Questions } from './model.js';
-import { controllerQ } from './controller.js';
+import { Questions } from './Model.js';
+import { controllerQ } from './Controller.js';
+import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 export const questionsRouter = express.Router();
 

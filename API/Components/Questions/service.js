@@ -1,6 +1,6 @@
 // ----------------------------- QUESTIONS SERVICE -----------------------------
 // --- IMPORTACIONES ---
-import { reposQ } from './respo.js';
+import { reposQ } from './Repository.js';
 
 // SHOW ALL QUESTIONS
 const showAllQuestions = async () => {

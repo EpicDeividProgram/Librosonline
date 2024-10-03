@@ -3,7 +3,7 @@
 // --------------------------------------------------------
 import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
-import { Category } from '../Category/model.js'; // Importamos Category
+import { Category } from '../Category/Model.js'; // Importamos Category
 import { BookPost } from '../BookPost/Model.js'; // Importamos BookPost
 
 export const CategoryPerBook = sequelize.define('categoryPerBook', {

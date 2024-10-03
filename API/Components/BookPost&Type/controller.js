@@ -1,6 +1,6 @@
 // ----------------------------- BookPost&Type CONTROLLER -----------------------------
 // --- IMPORTACIONES ---
-import { serviceBPT } from './service.js';
+import { serviceBPT } from './Service.js';
 
 // GET ALL BOOKPOST&TYPE
 const getAllBookPostType = async (req, res) => {

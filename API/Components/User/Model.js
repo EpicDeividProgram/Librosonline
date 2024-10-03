@@ -51,7 +51,7 @@ export const User = sequelize.define('user', {
 // Importacion dinamica para evitar problemas de referencia circular
 (async () => {
     const { TypeOfUser } = await import('../TypeOfUser/Model.js');
-    const { Questions } = await import('../Questions/model.js');
+    const { Questions } = await import('../Questions/Model.js');
 
     // Relación de User a TypeOfUser (N:1)
     User.belongsTo(TypeOfUser, {

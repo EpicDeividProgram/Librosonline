@@ -1,6 +1,6 @@
 import express from 'express';
 import { Author } from './model.js';
-import { controllerA } from './controller.js';
+import { controllerA } from './Controller.js';
 import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 

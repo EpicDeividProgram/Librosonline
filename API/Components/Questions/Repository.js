@@ -1,6 +1,6 @@
 // ----------------------------- QUESTIONS REPOSITORY -----------------------------
 // --- IMPORTACIONES ---
-import { Questions } from './model.js';
+import { Questions } from './Model.js';
 
 // SHOW ALL QUESTIONS
 const showAll = async () => {

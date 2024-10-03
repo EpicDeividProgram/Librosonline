@@ -1,7 +1,7 @@
 // ----------------------------- BookPost&Type REPOSITORY -----------------------------
 // --- IMPORTACIONES ---
 // --- respo.js ---
-import { BookPostType } from './model.js';
+import { BookPostType } from './Model.js';
 import { BookPost } from '../BookPost/Model.js';
 import { BookType } from '../BookType/Model.js';
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { controllerCPB } from './controller.js';
+import { controllerCPB } from './Controller.js';
 import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 export const categoryPerBookRouter = express.Router();

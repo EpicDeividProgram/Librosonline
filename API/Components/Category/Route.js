@@ -1,6 +1,6 @@
 import express from 'express';
-import { Category } from './model.js'; 
-import { controllerC } from './controller.js';
+import { Category } from './Model.js'; 
+import { controllerC } from './Controller.js';
 import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 export const categoryRouter = express.Router();

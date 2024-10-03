@@ -1,6 +1,6 @@
 // ----------------------------- CATEGORY PER BOOK CONTROLLER -----------------------------
 // --- IMPORTACIONES ---
-import { serviceCPB } from './service.js';
+import { serviceCPB } from './Service.js';
 
 // GET ALL CATEGORY PER BOOK (GET)
 const getAllCategoryPerBook = async (req, res) => {

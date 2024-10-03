@@ -1,6 +1,6 @@
 // ----------------------------- BookPost&Type SERVICE -----------------------------
 // --- IMPORTACIONES ---
-import { reposBPT } from './respo.js';
+import { reposBPT } from './Repository.js';
 
 // SHOW ALL
 const showAllBookPostType = async () => {

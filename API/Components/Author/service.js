@@ -1,6 +1,6 @@
 // ----------------------------- AUTHOR SERVICE -----------------------------
 // --- IMPORTACIONES ---
-import { reposA } from './respo.js';
+import { reposA } from './Repository.js';
 
 // SHOW ALL AUTHORS
 const showAllAuthors = async () => {

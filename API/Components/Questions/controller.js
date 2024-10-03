@@ -1,6 +1,6 @@
 // ----------------------------- QUESTIONS CONTROLLER -----------------------------
 // --- IMPORTACIONES ---
-import { serviceQ } from './service.js';
+import { serviceQ } from './Service.js';
 
 // GET ALL QUESTIONS (GET)
 const getAllQuestions = async (req, res) => {

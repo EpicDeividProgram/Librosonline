@@ -1,6 +1,6 @@
 // ----------------------------- CATEGORY REPOSITORY -----------------------------
 // --- IMPORTACIONES ---
-import { Category } from '../Category/model.js';
+import { Category } from './Model.js';
 import { Op } from 'sequelize'; // Asegúrate de importar Op
 
 // SHOW ALL CATEGORIES

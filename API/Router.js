@@ -5,13 +5,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { sequelize } from './Configuration/connection.js';
-import { authorRouter } from './Components/Author/routes.js';
-import { categoryRouter } from './Components/Category/routes.js';
-import { questionsRouter } from './Components/Questions/routes.js';
+import { authorRouter } from './Components/Author/Route.js';
+import { categoryRouter } from './Components/Category/Route.js';
+import { questionsRouter } from './Components/Questions/Route.js';
 import {typeUserRouter} from './Components/TypeOfUser/Route.js';
 import { userRouter } from './Components/User/Routes.js';
-import { bookPostTypeRouter } from './Components/BookPost&Type/routes.js';
-import { categoryPerBookRouter } from './Components/CategoryPerBook/routes.js';
+import { bookPostTypeRouter } from './Components/BookPost&Type/Route.js';
+import { categoryPerBookRouter } from './Components/CategoryPerBook/Route.js';
 import {typeBookRouter} from './Components/BookType/Route.js';
 import {postBookRouter} from './Components/BookPost/Route.js';
 import { authRouter } from './Components/Auth/auth.routes.js';

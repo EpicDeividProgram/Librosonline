@@ -1,6 +1,6 @@
 // ----------------------------- CATEGORY SERVICE -----------------------------
 // --- IMPORTACIONES ---
-import { reposC } from '../Category/respo.js';
+import { reposC } from '../Category/Repository.js';
 
 // SHOW ALL CATEGORIES
 const showAllCategories = async () => {

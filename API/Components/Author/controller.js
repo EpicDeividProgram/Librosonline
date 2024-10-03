@@ -1,6 +1,6 @@
 // ----------------------------- AUTHOR CONTROLLER -----------------------------
 // --- IMPORTACIONES ---
-import { serviceA } from './service.js';
+import { serviceA } from './Service.js';
 
 //GET AUTHORS (GET)
 const getAllAuthors = async (req, res) => {

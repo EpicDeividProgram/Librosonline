@@ -1,6 +1,6 @@
 // ----------------------------- CATEGORY PER BOOK SERVICE -----------------------------
 // --- IMPORTACIONES ---
-import { reposCPB } from './repos.js';
+import { reposCPB } from './Repository.js';
 
 // SHOW ALL CATEGORY PER BOOK
 const showAllCategoryPerBook = async () => {

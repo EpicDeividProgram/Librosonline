@@ -1,5 +1,5 @@
 // ----------------------------- CATEGORY CONTROLLER -----------------------------
-import { serviceC } from '../Category/service.js';
+import { serviceC } from './Service.js';
 
 // GET ALL CATEGORIES (GET)
 const getAllCategories = async (req, res) => {

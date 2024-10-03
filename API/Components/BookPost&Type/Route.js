@@ -1,5 +1,5 @@
 import express from 'express';
-import { controllerBPT } from './controller.js';
+import { controllerBPT } from './Controller.js';
 import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 export const bookPostTypeRouter = express.Router();

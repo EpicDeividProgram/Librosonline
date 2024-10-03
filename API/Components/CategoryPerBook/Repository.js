@@ -1,6 +1,6 @@
 // ----------------------------- CATEGORY PER BOOK REPOSITORY -----------------------------
 // --- IMPORTACIONES ---
-import { CategoryPerBook } from './model.js';
+import { CategoryPerBook } from './Model.js';
 import { Category } from '../Category/model.js';
 import { BookPost } from '../BookPost/Model.js';
 
