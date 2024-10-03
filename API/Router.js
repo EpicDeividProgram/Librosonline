@@ -18,6 +18,8 @@ import {similarProdrouter} from './Components/SimilarProducts/Route.js';
 import {userRouter} from './Components/User/Route.js';
 import {postBookRouter} from './Components/BookPost/Route.js';
 import {sagaRouter} from './Components/Serie/Route.js';
+//
+import { authRouter } from './Components/Auth/auth.routes.js';
 
 // Creamos la aplicación de Express
 const appX = express();
@@ -39,7 +41,8 @@ appX.use("/similarProduct", similarProdrouter)
 appX.use("/user", userRouter)
 appX.use("/postBook", postBookRouter)
 appX.use("/seriesRelated", sagaRouter)
-//-
+// Añadir las rutas de autenticación
+appX.use('/authLogin', authRouter);
 
 //
 appX.get('/', (req, res) => {
