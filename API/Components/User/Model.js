@@ -7,7 +7,8 @@ import { Sequelize } from 'sequelize';
 import { TypeOfUser } from '../TypeOfUser/Model.js';
 
 
-export const User = sequelize.define('user', {
+export const User = sequelize.define('user', 
+{
     idU: {
         type: Sequelize.STRING,
         allowNull: false,

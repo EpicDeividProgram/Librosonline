@@ -1,55 +1,51 @@
 // --------------------------------------------------------
 // --------------- USER REPOSITORY -------------------
 // --------------------------------------------------------
-// ---*** IMPORTACIONES ***---
-// USER OBJ -- TABLE (MODEL)
-import {User} from './Model.js'
-// *****************************************************************************
-//** 
+import { User } from './Model.js';
+import bcrypt from 'bcryptjs';
 
-// SHOW ALL
-const showAll = async () => {
+// ** Show all users
+const showAllUsers = async () => {
     return await User.findAll();
 };
-//** 
-// SEARCH :IDU
-const searchThisUser = async (idU) => {
-    return await User.findOne({where: { idU: idU }});
+
+// ** Search user by ID
+const findUserById = async (idU) => {
+    return await User.findOne({ where: { idU: idU } });
 };
-//** 
-// ADD/CREATE
-const addU = async (objUser) => {
-    const newUser = await User.create(objUser);
+
+// ** Add new user
+const addUser = async (user) => {
+    // Encriptar la contraseña antes de crear el usuario
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    const newUser = await User.create({ ...user, password: hashedPassword });
     return newUser;
 };
 
-//** 
-// UPDATE
-const updateU = async (idU, objU) => {
-    const updatedUser = await User.findOne({where: { idU: idU }});
-    updatedUser.name = objU.name;
-    updatedUser.lastName = objU.lastName;
-    updatedUser.birthDate = objU.birthDate;
-    updatedUser.address = objU.address;
-    updatedUser.email = objU.email;
-    updatedUser.typeOfUser = objU.typeOfUser;
-    await updatedUser.save();
-    return updatedUser;
+// ** Update user by ID
+const updateUser = async (idU, userDetails) => {
+    const user = await User.findOne({ where: { idU: idU } });
+    user.name = userDetails.name;
+    user.lastName = userDetails.lastName;
+    user.birthDate = userDetails.birthDate;
+    user.address = userDetails.address;
+    user.email = userDetails.email;
+    user.type = userDetails.type;
+    await user.save();
+    return user;
 };
-//** 
-// DELETE 
-const deleteU = async (idU) => {
-    const deleteThisUser = await User.findOne({where: { idU: idU }});
-    await deleteThisUser.destroy();
-    return deleteThisUser;
+
+// ** Delete user by ID
+const deleteUser = async (idU) => {
+    const user = await User.findOne({ where: { idU: idU } });
+    await user.destroy();
+    return user;
 };
-//
-//
-//export this module repos
+
 export const reposU = {
-    showAll,
-    searchThisUser,
-    addU,
-    updateU,
-    deleteU
-}
+    showAllUsers,
+    findUserById,
+    addUser,
+    updateUser,
+    deleteUser
+};

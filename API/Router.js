@@ -54,8 +54,9 @@ appX.get('/', (req, res) => {
 const connectDB = async () => {
     //validacion - conexion con la BD
     try{
-        await sequelize.sync();
-        console.log('DB connection established succesfully!');
+        //await sequelize.sync({ alter: true });
+        await sequelize.sync({ force: true }); // Crea todas las tablas
+        //await sequelize.sync();
     }
     catch (error){
         console.log('ERR0R! Couldnt connect yet with the DB!', error);
