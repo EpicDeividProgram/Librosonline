@@ -22,6 +22,12 @@ const addBookPostType = async (req, res) => {
     }
 
     try {
+        // Verificar si ya existe un tipo de BookPost con el mismo codeBook y codeType
+        const existingBPT = await serviceBPT.searchByCodeBookAndType(codeBook, codeType);
+        if (existingBPT) {
+            return res.status(400).json({ error: `BookPostType with codeBook '${codeBook}' and codeType '${codeType}' already exists` });
+        }
+
         const newBookPostType = await serviceBPT.addBookPostType(req.body);
         res.status(201).json(newBookPostType);
     } catch (error) {

@@ -5,14 +5,6 @@
 import { sequelize } from '../../Configuration/connection.js';
 import { Sequelize } from 'sequelize';
 
-//import { BookPost } from '../BookPost/Model.js';
-//import { SimilarProduct } from '../SimilarProducts/Model.js';
-
-/*
-NOTA! Se puede establecer la relacion sin indicarle el reference 
-y SOLO con la async function 
-*/
-
 export const Serie = sequelize.define('serie', 
 {
     codeR: {

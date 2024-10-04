@@ -5,6 +5,7 @@ import { BookPostType } from './Model.js';
 import { BookPost } from '../BookPost/Model.js';
 import { BookType } from '../BookType/Model.js';
 
+
 // SHOW ALL
 const showAll = async () => {
     return await BookPostType.findAll({
@@ -26,11 +27,17 @@ const findById = async (id) => {
     });
 };
 
+// NUEVO: SEARCH BY CODEBOOK AND CODETYPE
+const findByCodeBookAndType = async (codeBook, codeType) => {
+    return await BookPostType.findOne({
+        where: { codeBook: codeBook, codeType: codeType }
+    });
+};
+
 // ADD/CREATE
 const addBPT = async (bookPostType) => {
     return await BookPostType.create(bookPostType);
 };
-
 
 // DELETE
 const deleteBPT = async (id) => {
@@ -57,6 +64,7 @@ export const reposBPT = {
     findById,
     addBPT,
     deleteBPT,
-    checkBookPostExists,   // Nueva función
-    checkBookTypeExists    // Nueva función
+    checkBookPostExists,
+    checkBookTypeExists,
+    findByCodeBookAndType 
 };

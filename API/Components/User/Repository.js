@@ -14,6 +14,10 @@ const findUserById = async (idU) => {
     return await User.findOne({ where: { idU: idU } });
 };
 
+// ** Search user by Email
+const findByEmail = async (email) => {
+    return await User.findOne({ where: { email: email } });
+};
 
 // ** Add new user
 const addUser = async (user) => {
@@ -54,5 +58,6 @@ export const reposU = {
     findUserById,
     addUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    findByEmail,
 };

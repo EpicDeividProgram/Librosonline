@@ -13,6 +13,7 @@ const searchUserById = async (req, res) => {
     res.status(200).json(await serviceU.searchUserById(req.params.idU));
 };
 
+
 // Añadir un nuevo usuario (POST)
 const addUser = async (req, res) => {
     const { idU, name, lastName, birthDate, address, email, type, password } = req.body;
@@ -23,6 +24,18 @@ const addUser = async (req, res) => {
     }
 
     try {
+        // Verificar si ya existe un usuario con el mismo idU
+        const existingUserById = await serviceU.searchUserById(idU);
+        if (existingUserById.user) {
+            return res.status(400).json({ error: `User with ID '${idU}' already exists` });
+        }
+
+        // Verificar si ya existe un usuario con el mismo email
+        const existingUserByEmail = await serviceU.searchByEmail(email);
+        if (existingUserByEmail.user) {
+            return res.status(400).json({ error: `Email '${email}' is already in use` });
+        }
+
         const newUser = await serviceU.addUser(req.body);
         res.status(201).json(newUser);
     } catch (error) {
@@ -45,6 +58,18 @@ const updateUser = async (req, res) => {
     }
 
     try {
+        // Verificar si el usuario existe antes de actualizar
+        const existingUser = await serviceU.searchUserById(req.params.idU);
+        if (!existingUser.user) {
+            return res.status(404).json({ error: `User with ID '${req.params.idU}' not found` });
+        }
+
+        // Verificar si el email ya está en uso por otro usuario
+        const existingUserByEmail = await serviceU.searchByEmail(email);
+        if (existingUserByEmail.user && existingUserByEmail.user.idU !== req.params.idU) {
+            return res.status(400).json({ error: `Email '${email}' is already in use by another user` });
+        }
+
         const updatedUser = await serviceU.updateUser(req.params.idU, req.body);
         res.status(200).json(updatedUser);
     } catch (error) {

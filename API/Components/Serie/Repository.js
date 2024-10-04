@@ -40,7 +40,32 @@ const deleteS = async (codeR) => {
     await delSaga.destroy();
     return delSaga;
 };
-//
+
+
+// Verificar si el codeP existe (clave foránea)
+const checkCodePExists = async (codeP) => {
+    const { BookPost } = await import('../BookPost/Model.js');
+    return await BookPost.findOne({ where: { codeP } });
+};
+
+// Verificar si el codeS existe (clave foránea)
+const checkCodeSExists = async (codeS) => {
+    const { SimilarProduct } = await import('../SimilarProducts/Model.js');
+    return await SimilarProduct.findOne({ where: { codeS } });
+};
+
+// Verificar si ya existe una serie con los mismos datos
+const findDuplicateSerie = async (codeP, codeS, seriesName) => {
+    return await Serie.findOne({
+        where: {
+            [Sequelize.Op.or]: [
+                { codeP },
+                { codeS },
+                { seriesName }
+            ]
+        }
+    });
+};
 
 //export this module repos
 export const reposSeries = {
@@ -48,5 +73,8 @@ export const reposSeries = {
     findByCode,
     addS,
     updateS,
-    deleteS
+    deleteS,
+    checkCodePExists,
+    checkCodeSExists,
+    findDuplicateSerie
 }

@@ -1,7 +1,7 @@
 // ----------------------------- CATEGORY REPOSITORY -----------------------------
 // --- IMPORTACIONES ---
 import { Category } from './Model.js';
-import { Op } from 'sequelize'; // Asegúrate de importar Op
+import { Op } from 'sequelize';
 
 // SHOW ALL CATEGORIES
 const showAll = async () => {
@@ -40,10 +40,6 @@ const deleteCategory = async (id) => {
     return null;
 };
 
-// FILTER CATEGORIES BY NAME
-/*const filterByName = async (name) => {
-    return await Category.findAll({ where: { nameC: { [Op.like]: `%${name}%` } } });
-};*/
 
 const filterByName = async (name) => {
     return await Category.findAll({
@@ -53,11 +49,32 @@ const filterByName = async (name) => {
     });
 };
 
+// Buscar categoría por codeC o nameC
+const findCategoryByCodeOrName = async (codeC, nameC) => {
+    return await Category.findOne({
+        where: {
+            [Op.or]: [
+                { codeC: codeC },
+                { nameC: nameC }
+            ]
+        }
+    });
+};
+
+// Buscar categoría por nameC
+const findCategoryByName = async (nameC) => {
+    return await Category.findOne({
+        where: { nameC }
+    });
+};
+
 export const reposC = {
     showAll,
     findCategoryByID,
     addCategory,
     updateCategory,
     deleteCategory,
-    filterByName
+    filterByName,
+    findCategoryByCodeOrName,
+    findCategoryByName
 };

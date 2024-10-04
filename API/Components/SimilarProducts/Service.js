@@ -16,8 +16,23 @@ const searchByCode = async (codeS) => {
 };
 
 // ADD (:codeS)
+// Añadir validaciones de duplicados y claves foraneas antes de agregar un producto similar
 const addProdSim = async (simProd) => {
-    return { newSimP: await reposProdS.addProdS(simProd)};
+    const { userId, name } = simProd;
+
+    // Verificar si el producto similar ya existe
+    const duplicateSimProd = await reposProdS.findDuplicateSimProd(name);
+    if (duplicateSimProd) {
+        throw new Error('A similar product with the same name already exists');
+    }
+
+    // Verificar si la clave foránea existe
+    const validForeignKey = await reposProdS.checkUserIdExists(userId);
+    if (!validForeignKey) {
+        throw new Error('Invalid foreign key: userId does not exist');
+    }
+
+    return { newSimProd: await reposProdS.addProdS(simProd) };
 };
 
 // UPDATE (:codeS)
@@ -36,6 +51,20 @@ const filterByName = async (nameP) => {
     return { simProdByName: simproducts.filter(simP => simP.name == nameP)};
 };
 
+// Verificar si la clave foránea (userId) existe
+const checkForeignKey = async (userId) => {
+    const validUser = await reposProdS.checkUserIdExists(userId);
+    return validUser !== null;
+};
+
+// Verificar si ya existe un producto similar con el mismo nombre
+const checkDuplicateSimProd = async (name) => {
+    const existingSimProd = await reposProdS.findDuplicateSimProd(name);
+    return existingSimProd !== null;
+};
+
+
+
 //export this service module
 export const serviceSim = {
     showAllSimProd,
@@ -43,5 +72,7 @@ export const serviceSim = {
     addProdSim,
     updateProdSim,
     deleteProdSim,
-    filterByName
+    filterByName,
+    checkForeignKey,
+    checkDuplicateSimProd
 }

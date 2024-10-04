@@ -34,6 +34,11 @@ const deleteAuthor = async (id) => {
     return { delAuthor: await reposA.deleteA(id) };
 };
 
+// SEARCH AUTHOR BY FULLNAME
+const searchByFullname = async (fullname) => {
+    return { author: await reposA.findByFullname(fullname) };
+};
+
 // Exportación
 export const serviceA = {
     showAllAuthors,
@@ -41,5 +46,6 @@ export const serviceA = {
     searchById,
     addAuthor,
     updateAuthor,
-    deleteAuthor
+    deleteAuthor,
+    searchByFullname
 };

@@ -30,6 +30,12 @@ const addAuthor = async (req, res) => {
     }
 
     try {
+        // Verificar si el ID del autor ya existe
+        const existingAuthor = await serviceA.searchById(idA);
+        if (existingAuthor.author) {
+            return res.status(400).json({ error: `Author with ID '${idA}' already exists` });
+        }
+
         const newAuthor = await serviceA.addAuthor(req.body);
         res.status(201).json(newAuthor);
     } catch (error) {
@@ -42,17 +48,32 @@ const addAuthor = async (req, res) => {
 const updateAuthor = async (req, res) => {
     const { id } = req.params;
     const { fullname, biography, detailsAbout } = req.body;
+
     if (!id) {
         return res.status(400).json({ error: 'ID is required' });
     }
+
     if (!fullname || !biography || !detailsAbout) {
         return res.status(400).json({ error: 'Fullname, biography, and detailsAbout are required' });
     }
-    const updatedAuthor = await serviceA.updateAuthor(id, req.body);
-    if (!updatedAuthor) {
-        return res.status(404).json({ error: 'Author not found' });
+
+    try {
+        const existingAuthor = await serviceA.findAuthorById(id);
+        if (!existingAuthor.author) {
+            return res.status(404).json({ error: 'Author not found' });
+        }
+
+        // Validar si el nuevo fullname ya existe en la base de datos
+        const duplicateAuthor = await serviceA.searchByFullname(fullname);
+        if (duplicateAuthor.author && duplicateAuthor.author.idA !== id) {
+            return res.status(400).json({ error: `An author with the fullname '${fullname}' already exists` });
+        }
+
+        const updatedAuthor = await serviceA.updateAuthor(id, req.body);
+        res.status(200).json(updatedAuthor);
+    } catch (error) {
+        return res.status(500).json({ error: error.message || 'Failed to update author' });
     }
-    res.status(200).json(updatedAuthor);
 };
 
 

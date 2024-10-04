@@ -10,42 +10,45 @@ import {TypeOfUser} from './Model.js'
 const showAll = async () => {
     return await TypeOfUser.findAll();
 };
-//** 
+
 // SEARCH :USERNAME
 const findTypeByUsername = async (username) => {
     return await TypeOfUser.findOne({where: { username: username }});
 };
-//** 
+
+// SEARCH :TYPE OF USER
+const findTypeByTypeOfUser = async (typeOfUser) => {
+    return await TypeOfUser.findOne({ where: { typeOfUser: typeOfUser } });
+};
+
 // ADD/CREATE
 const addT = async (typeUser) => {
     const newTypeOfUser = await TypeOfUser.create(typeUser);
     return newTypeOfUser;
 };
 
-//** 
 // UPDATE
 const updateT = async (username, typeU) => {
     const updTypeOfUser = await TypeOfUser.findOne({where: { username: username }});
     updTypeOfUser.username = typeU.username;
     updTypeOfUser.typeOfUser = typeU.typeOfUser;
-    updTypeOfUser.password = typeU.password;
     await updTypeOfUser.save();
     return updTypeOfUser;
 };
-//** 
+
 // DELETE 
 const deleteT = async (username) => {
     const delTypeOfUser = await TypeOfUser.findOne({where: { username: username }});
     await delTypeOfUser.destroy();
     return delTypeOfUser;
 };
-//
-//
+
 //export this module repos
 export const reposT = {
     showAll,
     findTypeByUsername,
+    findTypeByTypeOfUser,
     addT,
     updateT,
     deleteT
-}
+};

@@ -13,6 +13,11 @@ const searchById = async (id) => {
     return { bookPostType: await reposBPT.findById(id) };
 };
 
+// NUEVO: SEARCH BY CODEBOOK AND CODETYPE
+const searchByCodeBookAndType = async (codeBook, codeType) => {
+    return await reposBPT.findByCodeBookAndType(codeBook, codeType);
+};
+
 // ADD BOOKPOST&TYPE
 const addBookPostType = async (bookPostType) => {
     const { codeBook, codeType } = bookPostType;
@@ -43,5 +48,6 @@ export const serviceBPT = {
     showAllBookPostType,
     searchById,
     addBookPostType,
-    deleteBookPostType
+    deleteBookPostType,
+    searchByCodeBookAndType
 };

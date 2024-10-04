@@ -13,6 +13,11 @@ const searchUserById = async (idU) => {
     return { user: await reposU.findUserById(idU) };
 };
 
+// Search user by Email
+const searchByEmail = async (email) => {
+    return { user: await reposU.findByEmail(email) };
+};
+
 // Add a new user
 const addUser = async (user) => {
     try {
@@ -36,5 +41,6 @@ export const serviceU = {
     searchUserById,
     addUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    searchByEmail,
 };

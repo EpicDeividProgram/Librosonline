@@ -14,8 +14,9 @@ const showAll = async () => {
 //** 
 // SEARCH :CODEP
 const findPostByCode = async (codePost) => {
-    return await BookPost.findOne({where: { codeP: codePost }});
+    return await BookPost.findOne({ where: { codeP: codePost } });
 };
+
 //** 
 // ADD/CREATE BOOK POST
 const addBookP = async (postBook) => {

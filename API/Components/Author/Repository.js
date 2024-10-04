@@ -40,6 +40,11 @@ const filterByBiography = async (biography) => {
     return await Author.findAll({ where: { biography } });
 };
 
+// SEARCH AUTHOR BY FULLNAME
+const findByFullname = async (fullname) => {
+    return await Author.findOne({ where: { fullname } });
+};
+
 // Exportación
 export const reposA = {
     showAll,
@@ -47,5 +52,6 @@ export const reposA = {
     addA,
     updateA,
     deleteA,
-    filterByBiography
+    filterByBiography,
+    findByFullname
 };

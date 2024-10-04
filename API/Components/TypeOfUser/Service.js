@@ -15,6 +15,11 @@ const searchByUsername = async (username) => {
     return { typeOfUser: await reposT.findTypeByUsername(username)};
 };
 
+// SEARCH BY TYPE OF USER
+const searchByTypeOfUser = async (typeOfUser) => {
+    return { typeOfUser: await reposT.findTypeByTypeOfUser(typeOfUser) };
+};
+
 // ADD (:username)
 const addTypeUser = async (typeUser) => {
     return { newTypeU: await reposT.addT(typeUser)};
@@ -34,22 +39,8 @@ const deleteTypeUser = async (username) => {
 export const serviceT = {
     showAllTypes,
     searchByUsername,
+    searchByTypeOfUser,
     addTypeUser,
     updateTypeUser,
     deleteTypeUser
-}
-
-// FILTER PRODUCTS By QUANTITY (:QUANTITY)
-/*const filterByQuantity = async (quantity) => {
-    const products = await reposP.showAll();
-    return { productsByQuantity: products.filter(prod => prod.quantity == quantity)};
-};*/
-
-
-/*
-.showAllTypes()
-.searchByUsername(req.params.username)
-.addTypeUser(req.body)
-.updateTypeUser(req.params.username, req.body)
-.deleteTypeUser(req.params.username)
-*/
+};

@@ -7,12 +7,12 @@ import {reposBookT} from './Repository.js';
 // SHOW ALL BOOKTYPES
 const showAllTypes = async () => {
     const typesB = await reposBookT.showAll();
-    return { TypeOfBooks: typesB};
+    return { TypeOfBooks: typesB };
 };
 
 // SEARCH BY CODE (:codeT)
 const searchByCode = async (codeT) => {
-    return { typeOfBook: await reposBookT.findTypeByCode(codeT)};
+    return { typeOfBook: await reposBookT.findTypeByCode(codeT) };
 };
 
 // ADD (:codeT)
@@ -20,6 +20,13 @@ const addTypeBook = async (bookType) => {
     if (!bookType.codeT || !bookType.descriptionType) {
         throw new Error('Both codeT and descriptionType are required');
     }
+    
+    // Validación para asegurarse de que no exista un tipo de libro con el mismo codeT
+    const existingType = await reposBookT.findTypeByCode(bookType.codeT);
+    if (existingType) {
+        throw new Error(`Book type with code '${bookType.codeT}' already exists`);
+    }
+
     return { newTypeU: await reposBookT.addBookT(bookType) };
 };
 
@@ -33,17 +40,16 @@ const updateTypeBook = async (codeT, typeB) => {
 
 // DELETE (:codeT)
 const deleteTypeBook = async (codeT) => {
-    return { delTypeU: await reposBookT.deleteBookT(codeT)};
+    return { delTypeU: await reposBookT.deleteBookT(codeT) };
 };
-
 
 // FILTER BOOK-TYPES By DESCRIPTION-TYPE (:description)
 const filterByQuantity = async (descripT) => {
     const booktypes = await reposBookT.showAll();
-    return { booktByDescrip: booktypes.filter(bookT => bookT.descriptionType == descripT)};
+    return { booktByDescrip: booktypes.filter(bookT => bookT.descriptionType === descripT) };
 };
 
-//export this serviceT module
+// Exportar este módulo de servicio
 export const serviceBookT = {
     showAllTypes,
     searchByCode,
@@ -51,4 +57,4 @@ export const serviceBookT = {
     updateTypeBook,
     deleteTypeBook,
     filterByQuantity
-}
+};

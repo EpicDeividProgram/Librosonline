@@ -28,9 +28,22 @@ const searchCategory = async (req, res) => {
 
 // ADD NEW CATEGORY (POST)
 const addCategory = async (req, res) => {
+    const { codeC, nameC, description } = req.body;
+
+    // Validación de campos vacíos
+    if (!codeC || !nameC || !description) {
+        return res.status(400).json({ message: 'All fields (codeC, nameC, description) are required' });
+    }
+
     try {
-        const category = await serviceC.addCategory(req.body);
-        res.status(201).json(category);
+        // Verificar si la categoría ya existe
+        const existingCategory = await serviceC.searchById(codeC);
+        if (existingCategory.category) {
+            return res.status(400).json({ message: 'Category with the same code already exists' });
+        }
+
+        const newCategory = await serviceC.addCategory(req.body);
+        res.status(201).json(newCategory);
     } catch (error) {
         res.status(500).json({ message: 'Error adding category', error });
     }
@@ -38,10 +51,17 @@ const addCategory = async (req, res) => {
 
 // UPDATE CATEGORY BY ID (PUT)
 const updateCategory = async (req, res) => {
+    const { id } = req.params;
+    const { nameC, description } = req.body;
+
+    // Validación de campos vacíos
+    if (!nameC || !description) {
+        return res.status(400).json({ message: 'Fields nameC and description are required' });
+    }
+
     try {
-        const { id } = req.params;
         const updatedCategory = await serviceC.updateCategory(id, req.body);
-        if (updatedCategory) {
+        if (updatedCategory.updatedCategory) {
             res.status(200).json(updatedCategory);
         } else {
             res.status(404).json({ message: 'Category not found' });
@@ -66,16 +86,6 @@ const deleteCategory = async (req, res) => {
     }
 };
 
-// FILTER CATEGORIES BY NAME (GET)
-/*const filterCategories = async (req, res) => {
-    try {
-        const { name } = req.params;
-        const categories = await serviceC.filterByName(name);
-        res.status(200).json(categories);
-    } catch (error) {
-        res.status(500).json({ message: 'Error filtering categories', error });
-    }
-};*/
 
 const filterCategories = async (req, res) => {
     try {

@@ -10,14 +10,6 @@ categoryRouter.get('/', async (req, res) => {
     res.json(category);
 });
 
-// Rutas para manejar category
-/*categoryRouter.get('/', controllerC.getAllCategories); // Obtener todas las categorías
-categoryRouter.get('/search/:id', controllerC.searchCategory); // Buscar categoría por ID
-categoryRouter.post('/add', controllerC.addCategory); // Agregar nueva categoría
-categoryRouter.put('/update/:id', controllerC.updateCategory); // Actualizar categoría por ID
-categoryRouter.delete('/delete/:id', controllerC.deleteCategory); // Eliminar categoría por ID
-categoryRouter.get('/filter/:name', controllerC.filterCategories); // Filtrar categorías por nombre*/
-
 
 // Proteger las rutas con autenticación y verificar si es 'publisher'
 categoryRouter.get('/', authenticateToken, isPublisher, controllerC.getAllCategories);

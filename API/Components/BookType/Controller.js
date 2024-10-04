@@ -24,6 +24,12 @@ const addBookType = async (req, res) => {
     }
 
     try {
+        // Verificar si ya existe un tipo de libro con el mismo codeT
+        const existingType = await serviceBookT.searchByCode(codeT);
+        if (existingType.typeOfBook) {
+            return res.status(400).json({ error: `Book type with code '${codeT}' already exists` });
+        }
+
         const newType = await serviceBookT.addTypeBook(req.body);
         res.status(201).json(newType);
     } catch (error) {
@@ -41,6 +47,18 @@ const updateBookType = async (req, res) => {
     }
 
     try {
+        // Verificar si el tipo de libro existe antes de actualizar
+        const existingType = await serviceBookT.searchByCode(req.params.codeT);
+        if (!existingType.typeOfBook) {
+            return res.status(404).json({ error: `Book type with code '${req.params.codeT}' not found` });
+        }
+
+        // Verificar si hay otro tipo de libro con el mismo codeT (solo si es diferente)
+        const existingTypeWithSameCode = await serviceBookT.searchByCode(req.body.codeT);
+        if (existingTypeWithSameCode.typeOfBook && existingTypeWithSameCode.typeOfBook.codeT !== req.params.codeT) {
+            return res.status(400).json({ error: `Book type with code '${req.body.codeT}' already exists` });
+        }
+
         const updatedType = await serviceBookT.updateTypeBook(req.params.codeT, req.body);
         res.status(200).json(updatedType);
     } catch (error) {
@@ -68,9 +86,3 @@ export const controllerBookT= {
     filterBookTypes
 }
 // ----------------------=================
-
-//FILTER PRODUCT BY QUANTITY (GET)
-/*
-const filterProducts = async (req, res)=>{
-    res.status(200).json(await serviceP.filterByQuantity(req.params.quantity))
-}*/

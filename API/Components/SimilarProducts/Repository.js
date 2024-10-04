@@ -41,7 +41,18 @@ const deleteProdS = async (codeS) => {
     await delSimProd.destroy();
     return delSimProd;
 };
-//
+
+
+// Verificar si el userId existe (clave foránea)
+const checkUserIdExists = async (userId) => {
+    const { User } = await import('../User/Model.js');
+    return await User.findOne({ where: { idU: userId } });
+};
+
+// Verificar si ya existe un producto similar con el mismo nombre
+const findDuplicateSimProd = async (name) => {
+    return await SimilarProduct.findOne({ where: { name } });
+};
 
 //export this module repos
 export const reposProdS = {
@@ -49,5 +60,7 @@ export const reposProdS = {
     findByCode,
     addProdS,
     updateProdS,
-    deleteProdS
+    deleteProdS,
+    checkUserIdExists,
+    findDuplicateSimProd
 }

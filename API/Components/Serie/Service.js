@@ -17,8 +17,24 @@ const searchByCode = async (codeR) => {
 };
 
 // ADD (:codeR)
+// Añadir validaciones de duplicados y claves foráneas antes de agregar una serie
 const addSaga = async (saga) => {
-    return { newSaga: await reposSeries.addS(saga)};
+    const { codeP, codeS, seriesName } = saga;
+
+    // Verificar si la serie ya existe
+    const existingSerie = await reposSeries.findDuplicateSerie(codeP, codeS, seriesName);
+    if (existingSerie) {
+        throw new Error('A series with the same codeP, codeS, or seriesName already exists');
+    }
+
+    // Verificar si las claves foráneas existen
+    const validForeignKeys = await reposSeries.checkForeignKeys(codeP, codeS);
+    if (!validForeignKeys) {
+        throw new Error('Invalid foreign keys: codeP or codeS does not exist');
+    }
+
+    const newSerie = await reposSeries.addS(saga);
+    return { newSerie };
 };
 
 // UPDATE (:codeR)
@@ -32,11 +48,29 @@ const deleteSaga = async (codeR) => {
 };
 
 
+// Verificar si las claves foráneas existen
+const checkForeignKeys = async (codeP, codeS) => {
+    const validCodeP = await reposSeries.checkCodePExists(codeP);
+    const validCodeS = await reposSeries.checkCodeSExists(codeS);
+    return validCodeP && validCodeS;
+};
+
+// Verificar si ya existe una serie con los mismos datos
+const checkDuplicateSerie = async (codeP, codeS, seriesName) => {
+    const existingSerie = await reposSeries.findDuplicateSerie(codeP, codeS, seriesName);
+    return existingSerie !== null;
+};
+
+
+
+
 //export this service module
 export const serviceSerie = {
     showAllSagas,
     searchByCode,
     addSaga,
     updateSaga,
-    deleteSaga
+    deleteSaga,
+    checkForeignKeys,
+    checkDuplicateSerie 
 }

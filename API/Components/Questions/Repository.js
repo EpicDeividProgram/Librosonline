@@ -12,12 +12,6 @@ const findQuestionByID = async (id) => {
     return await Questions.findOne({ where: { codeQ: id } });
 };
 
-/*// ADD/CREATE QUESTION
-const addQ = async (question) => {
-    const newQuestion = await Questions.create(question);
-    return newQuestion;
-};*/
-
 // ADD/CREATE QUESTION
 const addQ = async (question) => {
     const newQuestion = await Questions.create({
@@ -44,11 +38,30 @@ const deleteQ = async (id) => {
     return delQuestion;
 };
 
+// Verificar si existe el usuario
+const checkUserExists = async (userId) => {
+    return await User.findOne({ where: { idU: userId } });
+};
+
+// Verificar si ya existe una pregunta con el mismo código o descripción
+const findDuplicateQuestion = async (codeQ, description) => {
+    return await Questions.findOne({
+        where: {
+            [Sequelize.Op.or]: [
+                { codeQ: codeQ },
+                { description: description }
+            ]
+        }
+    });
+};
+
 // Exportar repos
 export const reposQ = {
     showAll,
     findQuestionByID,
     addQ,
     updateQ,
-    deleteQ
+    deleteQ,
+    checkUserExists,
+    findDuplicateQuestion
 };
