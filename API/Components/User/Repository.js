@@ -14,20 +14,21 @@ const findUserById = async (idU) => {
     return await User.findOne({ where: { idU: idU } });
 };
 
-// ** Add new user
-/*const addUser = async (user) => {
-    const newUser = await User.create(user);
-    return newUser;
-};*/
 
 // ** Add new user
 const addUser = async (user) => {
-    // Encriptar la contraseña antes de crear el usuario
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    const newUser = await User.create({ ...user, password: hashedPassword });
-    return newUser;
+    try {
+        // Encriptar la contraseña antes de crear el usuario
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        const newUser = await User.create({ ...user, password: hashedPassword });
+        return newUser;
+    } catch (error) {
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+            throw new Error('Type does not exist');
+        }
+        throw error;
+    }
 };
-
 // ** Update user by ID
 const updateUser = async (idU, userDetails) => {
     const user = await User.findOne({ where: { idU: idU } });

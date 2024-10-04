@@ -10,12 +10,23 @@ export const TypeOfUser = sequelize.define('typeOfUser', {
     username: {
         type: Sequelize.STRING,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        validate: {
+            notEmpty: {
+                msg: "Username cannot be empty"
+            }
+        }
     },
     typeOfUser: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true // Restriccion UNIQUE
+        unique: true, // Restriccion UNIQUE
+        validate: {
+            notEmpty: {
+                msg: "Type of User cannot be empty"
+            }
+        } 
+        
     }
 });
 

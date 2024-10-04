@@ -15,12 +15,41 @@ const searchUserById = async (req, res) => {
 
 // Añadir un nuevo usuario (POST)
 const addUser = async (req, res) => {
-    res.status(200).json(await serviceU.addUser(req.body));
+    const { idU, name, lastName, birthDate, address, email, type, password } = req.body;
+
+    // Validación de campos vacíos
+    if (!idU || !name || !lastName || !birthDate || !address || !email || !type || !password) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    try {
+        const newUser = await serviceU.addUser(req.body);
+        res.status(201).json(newUser);
+    } catch (error) {
+        // Capturar el error de clave foránea y otros errores
+        if (error.message === 'Type does not exist') {
+            return res.status(400).json({ error: 'Type provided does not exist' });
+        }
+        return res.status(500).json({ error: error.message || 'Error creating user' });
+    }
 };
+
 
 // Actualizar un usuario (PUT)
 const updateUser = async (req, res) => {
-    res.status(200).json(await serviceU.updateUser(req.params.idU, req.body));
+    const { name, lastName, birthDate, address, email, type } = req.body;
+
+    // Validación de campos vacíos
+    if (!name || !lastName || !birthDate || !address || !email || !type) {
+        return res.status(400).json({ error: 'All fields except password are required' });
+    }
+
+    try {
+        const updatedUser = await serviceU.updateUser(req.params.idU, req.body);
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        return res.status(500).json({ error: error.message || 'Error updating user' });
+    }
 };
 
 // Eliminar un usuario (DELETE)

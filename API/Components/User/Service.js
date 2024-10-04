@@ -15,9 +15,12 @@ const searchUserById = async (idU) => {
 
 // Add a new user
 const addUser = async (user) => {
-    return { newUser: await reposU.addUser(user) };
+    try {
+        return { newUser: await reposU.addUser(user) };
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
-
 // Update a user by ID
 const updateUser = async (idU, userDetails) => {
     return { updatedUser: await reposU.updateUser(idU, userDetails) };
