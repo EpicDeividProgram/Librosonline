@@ -17,12 +17,20 @@ const searchByCode = async (codeP) => {
 
 // ADD (:codeP)
 const addBookPost = async (postBook) => {
-    return { newPostB: await reposBookPost.addBookP(postBook)};
+    try {
+        return { newPostB: await reposBookPost.addBookP(postBook) };
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
 // UPDATE (:codeP)
 const updatePost = async (codeP, postB) => {
-    return { updPostB: await reposBookPost.updateBookP(codeP, postB)};
+    try {
+        return { updPostB: await reposBookPost.updateBookP(codeP, postB) };
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
 // DELETE (:codeP)

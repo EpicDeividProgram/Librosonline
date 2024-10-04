@@ -14,14 +14,39 @@ const searchBookType = async (req, res)=>{
     res.status(200).json(await serviceBookT.searchByCode(req.params.codeT))
 }
 
-//ADD TYPE (POST)
-const addBookType = async (req, res)=>{
-    res.status(200).json(await serviceBookT.addTypeBook(req.body));
-}
-//UPDATE TYPE (PUT)
-const updateBookType = async (req, res)=> {
-    res.status(200).json(await serviceBookT.updateTypeBook(req.params.codeT, req.body))
-}
+// ADD TYPE (POST)
+const addBookType = async (req, res) => {
+    const { codeT, descriptionType } = req.body;
+
+    // Validación de campos vacíos
+    if (!codeT || !descriptionType) {
+        return res.status(400).json({ error: 'Both codeT and descriptionType are required' });
+    }
+
+    try {
+        const newType = await serviceBookT.addTypeBook(req.body);
+        res.status(201).json(newType);
+    } catch (error) {
+        return res.status(500).json({ error: error.message || 'Error adding book type' });
+    }
+};
+
+// UPDATE TYPE (PUT)
+const updateBookType = async (req, res) => {
+    const { descriptionType } = req.body;
+
+    // Validación de campos vacíos
+    if (!descriptionType) {
+        return res.status(400).json({ error: 'DescriptionType is required' });
+    }
+
+    try {
+        const updatedType = await serviceBookT.updateTypeBook(req.params.codeT, req.body);
+        res.status(200).json(updatedType);
+    } catch (error) {
+        return res.status(500).json({ error: error.message || 'Error updating book type' });
+    }
+};
 
 //DELETE TYPE (DELETE)
 const deleteBookType = async (req, res) =>{

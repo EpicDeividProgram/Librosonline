@@ -15,6 +15,21 @@ const searchById = async (id) => {
 
 // ADD BOOKPOST&TYPE
 const addBookPostType = async (bookPostType) => {
+    const { codeBook, codeType } = bookPostType;
+
+    // Verificar que el codeBook exista en la tabla BookPost
+    const bookPostExists = await reposBPT.checkBookPostExists(codeBook);
+    if (!bookPostExists) {
+        throw new Error(`BookPost with codeBook ${codeBook} does not exist`);
+    }
+
+    // Verificar que el codeType exista en la tabla BookType
+    const bookTypeExists = await reposBPT.checkBookTypeExists(codeType);
+    if (!bookTypeExists) {
+        throw new Error(`BookType with codeType ${codeType} does not exist`);
+    }
+
+    // Si todo es válido, proceder a agregar el registro
     return { newBookPostType: await reposBPT.addBPT(bookPostType) };
 };
 

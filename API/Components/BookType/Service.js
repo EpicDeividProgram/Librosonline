@@ -17,12 +17,18 @@ const searchByCode = async (codeT) => {
 
 // ADD (:codeT)
 const addTypeBook = async (bookType) => {
-    return { newTypeU: await reposBookT.addBookT(bookType)};
+    if (!bookType.codeT || !bookType.descriptionType) {
+        throw new Error('Both codeT and descriptionType are required');
+    }
+    return { newTypeU: await reposBookT.addBookT(bookType) };
 };
 
 // UPDATE (:codeT)
 const updateTypeBook = async (codeT, typeB) => {
-    return { updTypeU: await reposBookT.updateBookT(codeT, typeB)};
+    if (!typeB.descriptionType) {
+        throw new Error('DescriptionType is required');
+    }
+    return { updTypeU: await reposBookT.updateBookT(codeT, typeB) };
 };
 
 // DELETE (:codeT)
@@ -46,18 +52,3 @@ export const serviceBookT = {
     deleteTypeBook,
     filterByQuantity
 }
-
-// FILTER PRODUCTS By QUANTITY (:QUANTITY)
-/*const filterByQuantity = async (quantity) => {
-    const products = await reposP.showAll();
-    return { productsByQuantity: products.filter(prod => prod.quantity == quantity)};
-};*/
-
-
-/*
-.showAllTypes()
-.searchByUsername(req.params.username)
-.addTypeUser(req.body)
-.updateTypeUser(req.params.username, req.body)
-.deleteTypeUser(req.params.username)
-*/

@@ -14,7 +14,19 @@ const searchBookPostType = async (req, res) => {
 
 // ADD NEW BOOKPOST&TYPE
 const addBookPostType = async (req, res) => {
-    res.status(200).json(await serviceBPT.addBookPostType(req.body));
+    const { codeT, codeBook, codeType } = req.body;
+
+    // Validación de campos vacíos
+    if (!codeT || !codeBook || !codeType) {
+        return res.status(400).json({ error: 'Fields codeT, codeBook, and codeType are required' });
+    }
+
+    try {
+        const newBookPostType = await serviceBPT.addBookPostType(req.body);
+        res.status(201).json(newBookPostType);
+    } catch (error) {
+        return res.status(500).json({ error: error.message || 'Error adding BookPostType' });
+    }
 };
 
 // DELETE BOOKPOST&TYPE

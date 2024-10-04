@@ -17,22 +17,40 @@ const findPostByCode = async (codePost) => {
     return await BookPost.findOne({where: { codeP: codePost }});
 };
 //** 
-// ADD/CREATE
+// ADD/CREATE BOOK POST
 const addBookP = async (postBook) => {
-    const newPostBook = await BookPost.create(postBook);
-    return newPostBook;
+    try {
+        const newPostBook = await BookPost.create(postBook);
+        return newPostBook;
+    } catch (error) {
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+            throw new Error('Invalid foreign key: idA (Author) or idU (User) does not exist');
+        }
+        throw error;
+    }
 };
 
 //** 
-// UPDATE
+// UPDATE BOOK POST
 const updateBookP = async (codeP, postB) => {
-    const updPostBook = await BookPost.findOne({where: { codeP: codeP }});
-    updPostBook.name = postB.name;
-    updPostBook.idA = postB.idA;
-    updPostBook.idU = postB.idU;
-    updPostBook.postDescription = postB.postDescription;
-    await updPostBook.save();
-    return updPostBook;
+    try {
+        const updPostBook = await BookPost.findOne({ where: { codeP: codeP } });
+        if (!updPostBook) {
+            throw new Error('Book post not found');
+        }
+
+        updPostBook.name = postB.name;
+        updPostBook.idA = postB.idA;
+        updPostBook.idU = postB.idU;
+        updPostBook.postDescription = postB.postDescription;
+        await updPostBook.save();
+        return updPostBook;
+    } catch (error) {
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+            throw new Error('Invalid foreign key: idA (Author) or idU (User) does not exist');
+        }
+        throw error;
+    }
 };
 //** 
 // DELETE 
