@@ -44,9 +44,3 @@ export const controllerT= {
     deleteUserType
 }
 // ----------------------=================
-
-//FILTER PRODUCT BY QUANTITY (GET)
-/*
-const filterProducts = async (req, res)=>{
-    res.status(200).json(await serviceP.filterByQuantity(req.params.quantity))
-}*/
