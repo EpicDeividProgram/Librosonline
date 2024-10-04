@@ -5,6 +5,7 @@
 import express from 'express'
 import {controllerS} from './Controller.js'
 import bodyParser from 'body-parser'
+import { authenticateToken, isPublisher } from '../Auth/auth.middleware.js';
 
 export const similarProdrouter = express.Router()
 
@@ -14,15 +15,15 @@ similarProdrouter.use(express.json())
 
 // (CRUD DE BOOK-TYPE)
 //(GET)
-similarProdrouter.get('/simproducts', controllerS.getAllSimProd) //=== GET/SHOW SIM. PRODUCTS === 
-similarProdrouter.get('/:codeS', controllerS.searchSimProd) //=== SEARCH SIM. PRODUCT BY CODES === 
+similarProdrouter.get('/simproducts', authenticateToken, isPublisher, controllerS.getAllSimProd) //=== GET/SHOW SIM. PRODUCTS === 
+similarProdrouter.get('/:codeS', authenticateToken, isPublisher, controllerS.searchSimProd) //=== SEARCH SIM. PRODUCT BY CODES === 
 //(POST)
-similarProdrouter.post('/', controllerS.addSimProd) //=== ADD === 
+similarProdrouter.post('/', authenticateToken, isPublisher, controllerS.addSimProd) //=== ADD === 
 //(PUT)
-similarProdrouter.put('/:codeS',controllerS.updateSimProd) //=== UPDATE === 
+similarProdrouter.put('/:codeS', authenticateToken, isPublisher,controllerS.updateSimProd) //=== UPDATE === 
 //(DELETE)
-similarProdrouter.delete('/:codeS', controllerS.deleteSimProd) //=== DELETE ===
+similarProdrouter.delete('/:codeS', authenticateToken, isPublisher, controllerS.deleteSimProd) //=== DELETE ===
 //
-similarProdrouter.get('/byName/:name', controllerS.filterProdByName) //FILTER SIM. PRODUCTS BY NAME
+similarProdrouter.get('/byName/:name', authenticateToken, isPublisher, controllerS.filterProdByName) //FILTER SIM. PRODUCTS BY NAME
 
 //*************************
