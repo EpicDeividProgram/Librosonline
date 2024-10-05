@@ -12,33 +12,23 @@ const showAllTypes = async () => {
 
 // SEARCH BY CODE (:codeP)
 const searchByCode = async (codeP) => {
-    const post = await reposBookPost.findPostByCode(codeP);
-    return post; // Devolver solo el post encontrado
+    return { BookPost: await reposBookPost.findPostByCode(codeP)};
 };
 
 // ADD (:codeP)
 const addBookPost = async (postBook) => {
-    try {
-        return { newPostB: await reposBookPost.addBookP(postBook) };
-    } catch (error) {
-        throw new Error(error.message);
-    }
+    return { newPostB: await reposBookPost.addBookP(postBook)};
 };
 
 // UPDATE (:codeP)
 const updatePost = async (codeP, postB) => {
-    try {
-        return { updPostB: await reposBookPost.updateBookP(codeP, postB) };
-    } catch (error) {
-        throw new Error(error.message);
-    }
+    return { updPostB: await reposBookPost.updateBookP(codeP, postB)};
 };
 
 // DELETE (:codeP)
 const deletePost = async (codeP) => {
     return { delPostB: await reposBookPost.deleteBookP(codeP)};
 };
-
 
 //export this servicePost module
 export const servicePost = {
@@ -48,3 +38,4 @@ export const servicePost = {
     updatePost,
     deletePost,
 }
+
